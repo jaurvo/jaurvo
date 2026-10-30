@@ -1,0 +1,61 @@
+<section class="section page-head">
+  <div class="container">
+    <p class="eyebrow">Our Work</p>
+    <h1 class="section-title">Real projects, live on the internet</h1>
+    <p class="section-lede">
+      Every project below is a real, working website, open a card's live site and see for
+      yourself. <strong>Live Client Project</strong> means a real client's work;
+      <strong>Sample Design</strong> means a studio sample built to show the craft.
+    </p>
+  </div>
+</section>
+
+@for (category of categories; track category.name) {
+  <section class="section section--tight work-section">
+    <div class="container">
+      <div class="work-head" [appReveal]>
+        <h2>{{ category.name }}</h2>
+        @if (projectsIn(category).length > 0) {
+          <span class="work-count">
+            {{ projectsIn(category).length }} project{{ projectsIn(category).length > 1 ? 's' : '' }}, live
+          </span>
+        } @else {
+          <span class="work-count">Portfolio growing</span>
+        }
+      </div>
+
+      @if (projectsIn(category).length > 0) {
+        <div class="work-grid">
+          @for (project of projectsIn(category); track project.key; let i = $index) {
+            <div [appReveal]="i * 90">
+              <app-project-card [project]="project" [showDescription]="true" />
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-note" [appReveal]>
+          <h3>{{ category.emptyTitle }}</h3>
+          <p>{{ category.emptyText }}</p>
+          <a class="btn btn--ghost" routerLink="/contact" [queryParams]="{ service: sampleService(category.name), message: category.emptyMessage }">
+            Ask for samples
+          </a>
+        </div>
+      }
+    </div>
+  </section>
+}
+
+<section class="section cta-band">
+  <div class="container" [appReveal]>
+    <h2 class="section-title cta-title">Start a project like these</h2>
+    <div class="cta-actions">
+      <a class="btn btn--accent" routerLink="/contact">
+        Start a Project
+      </a>
+      <a class="btn btn--ghost" routerLink="/services">
+        See services &amp; prices
+        <app-icon name="arrow-right" [size]="16" />
+      </a>
+    </div>
+  </div>
+</section>

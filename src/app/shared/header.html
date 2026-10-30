@@ -1,0 +1,58 @@
+<header id="top" class="site-header" [class.header-hidden]="hidden()" [class.scrolled]="scrolled()">
+  <div class="container header-in">
+    <a routerLink="/" class="brand" (click)="closeMenu()" aria-label="Jaurvo, home">
+      <span class="brand-mark">JV</span>
+      <span class="brand-text">
+        <span class="brand-name">jaurvo</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="link-sweep">Home</a>
+      <a routerLink="/services" routerLinkActive="active" class="link-sweep">Services</a>
+      <a routerLink="/work" routerLinkActive="active" class="link-sweep">Work</a>
+      <a routerLink="/about" routerLinkActive="active" class="link-sweep">About</a>
+      <a routerLink="/contact" routerLinkActive="active" class="link-sweep">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <app-currency-switcher class="header-currency" />
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="theme.toggle()"
+        [attr.aria-label]="theme.theme() === 'light' ? 'Switch to dark theme' : 'Switch to light theme'"
+      >
+        <app-icon [name]="theme.theme() === 'light' ? 'moon' : 'sun'" [size]="20" />
+      </button>
+      <a class="btn btn--ink header-cta" routerLink="/contact">
+        Start a Project
+      </a>
+      <button
+        type="button"
+        class="icon-btn nav-toggle"
+        (click)="menuOpen.set(!menuOpen())"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Toggle menu"
+      >
+        <app-icon [name]="menuOpen() ? 'x' : 'menu'" [size]="24" />
+      </button>
+    </div>
+  </div>
+
+  @if (menuOpen()) {
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a routerLink="/" (click)="closeMenu()">Home</a>
+      <a routerLink="/services" (click)="closeMenu()">Services</a>
+      <a routerLink="/work" (click)="closeMenu()">Work</a>
+      <a routerLink="/about" (click)="closeMenu()">About</a>
+      <a routerLink="/contact" (click)="closeMenu()">Contact</a>
+      <a routerLink="/privacy" (click)="closeMenu()">Privacy Policy</a>
+      <a routerLink="/terms" (click)="closeMenu()">Terms of Service</a>
+      <a class="btn btn--accent mobile-cta" routerLink="/contact" (click)="closeMenu()">
+        Start a Project
+      </a>
+      <app-currency-switcher />
+    </nav>
+  }
+</header>

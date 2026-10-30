@@ -1,0 +1,86 @@
+<section class="section page-head">
+  <div class="container">
+    <p class="eyebrow">Services</p>
+    <h1 class="section-title">What we make, in detail</h1>
+    <p class="section-lede">
+      Ten services, each with everything it covers, what's included and what it starts
+      at. Send an enquiry, no sign-ups, and get a fixed quote in writing before you pay
+      anything.
+    </p>
+    <div class="services-currency">
+      <app-currency-switcher />
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container service-list">
+    @for (service of content.services(); track service.key; let i = $index) {
+      <article class="service-block" [id]="service.key" [attr.data-accent]="service.accent" [appReveal]>
+        <div class="service-head">
+          <span class="service-icon"><app-icon [name]="service.icon" [size]="26" /></span>
+          <div class="service-head-text">
+            <span class="service-code">{{ service.code }}</span>
+            <h2>{{ service.name }}</h2>
+          </div>
+          <span class="badge service-accent-chip">{{ service.subServices.length }} services &amp; designs</span>
+          <figure class="service-figure">
+            <img class="service-figure-img" [src]="service.image" [srcset]="service.image.replace('.webp', '-sm.webp') + ' 480w, ' + service.image + ' 800w'" sizes="(max-width: 640px) 92vw, 172px" [alt]="service.name" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+        <p class="service-desc">{{ service.description }}</p>
+
+        <div class="sub-grid">
+          @for (sub of service.subServices; track sub.name) {
+            <article class="sub-card">
+              <img class="sub-thumb" [src]="sub.image" [srcset]="(sub.image ?? '').replace('.webp', '-sm.webp') + ' 480w, ' + sub.image + ' 800w'" sizes="(max-width: 640px) 92vw, 300px" [alt]="sub.name" loading="lazy" decoding="async" />
+              <h3 class="sub-name">{{ sub.name }}</h3>
+              <p>{{ sub.blurb }}</p>
+              <div class="sub-links">
+                @if (slugFor(sub.name); as slug) {
+                  <a class="link-sweep sub-more" [routerLink]="['/services', slug]">
+                    Learn more
+                    <app-icon name="arrow-right" [size]="16" />
+                  </a>
+                }
+                <a class="link-sweep sub-quote" routerLink="/contact" [queryParams]="{ service: service.name, message: 'I need: ' + sub.name + '.' }">
+                  Get a Quote
+                </a>
+              </div>
+            </article>
+          }
+        </div>
+
+        <div class="service-detail-row">
+          <div class="service-side">
+            <h3>What's included</h3>
+            <ul>
+              @for (item of service.includes; track item) {
+                <li><app-icon name="check" [size]="16" /> {{ item }}</li>
+              }
+            </ul>
+          </div>
+          <div class="service-side">
+            <h3>Who it's for</h3>
+            <p>{{ service.whoFor }}</p>
+            <div class="service-order-box">
+              <div>
+                <span class="price-note">{{ service.priceNote }}</span>
+                <span class="price-value">{{ currency.formatOrRequest(service.priceUsd) }}</span>
+                <span class="price-negotiable">Price negotiable</span>
+              </div>
+              <div class="service-order-actions">
+                <a class="btn btn--accent" routerLink="/contact" [queryParams]="{ service: service.name }">
+                  Get a Quote
+                </a>
+                <a class="link-sweep service-budget" routerLink="/contact" [queryParams]="{ service: service.name, message: 'My budget is ___ and I need ' + service.name + '.' }">
+                  Tell us your budget
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>

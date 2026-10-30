@@ -1,0 +1,16 @@
+@if (!isAdmin) {
+  <app-preloader />
+}
+<div class="grain" aria-hidden="true"></div>
+<canvas class="splash-cursor" appSplashCursor aria-hidden="true"></canvas>
+<canvas class="click-spark" appClickSpark aria-hidden="true"></canvas>
+<div class="pointer-glow" appPointerGlow aria-hidden="true"></div>
+@if (!isAdmin) {
+  <app-header />
+}
+<main>
+  <router-outlet />
+</main>
+@if (!isAdmin) {
+  <app-footer />
+}

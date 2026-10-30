@@ -1,0 +1,102 @@
+@if (page) {
+  <script type="application/ld+json" [textContent]="jsonLd"></script>
+
+  <section class="section page-head">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb" [appReveal]>
+        <a routerLink="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <a routerLink="/services">Services</a>
+        <span aria-hidden="true">/</span>
+        <a routerLink="/services" [fragment]="page.categoryKey">{{ page.categoryName }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ page.name }}</span>
+      </nav>
+      <p class="eyebrow" [appReveal]>{{ page.categoryCode }}, {{ page.categoryName }}</p>
+      <h1 class="detail-title" [appReveal]="80">{{ page.h1 }}</h1>
+      <p class="section-lede" [appReveal]="140">{{ page.intro }}</p>
+      <div class="detail-ctas" [appReveal]="200">
+        <a
+          class="btn btn--accent"
+          appMagnetic
+          routerLink="/contact"
+          [queryParams]="{ service: page.categoryName, message: 'I need: ' + page.name + '.' }"
+        >
+          Get a Quote
+        </a>
+        <a class="btn btn--ghost" appMagnetic routerLink="/services" [fragment]="page.categoryKey">
+          All {{ page.categoryName }} services
+          <app-icon name="arrow-right" [size]="18" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container detail-grid">
+      <div>
+        <h2 class="detail-h2" [appReveal]>What you get</h2>
+        <ul class="detail-points">
+          @for (point of page.points; track point; let i = $index) {
+            <li [appReveal]="i * 60">
+              <app-icon name="check" [size]="18" />
+              <span>{{ point }}</span>
+            </li>
+          }
+        </ul>
+        <p class="detail-price" [appReveal]>{{ page.priceHint }}</p>
+        <p class="detail-note" [appReveal]>
+          Every project starts with a fixed quote in writing before you pay anything.
+          50% advance to start, balance on delivery.
+        </p>
+      </div>
+
+      <aside class="detail-faqs">
+        <h2 class="detail-h2" [appReveal]>Common questions</h2>
+        @for (faq of page.faqs; track faq.q; let i = $index) {
+          <details class="detail-faq" [appReveal]="i * 60">
+            <summary>{{ faq.q }}</summary>
+            <p>{{ faq.a }}</p>
+          </details>
+        }
+      </aside>
+    </div>
+  </section>
+
+  @if (related.length > 0) {
+    <section class="section section--sand section--tight">
+      <div class="container">
+        <h2 class="detail-h2" [appReveal]>Related {{ page.categoryName }} services</h2>
+        <div class="related-grid">
+          @for (rel of related; track rel.slug; let i = $index) {
+            <a class="related-card" [routerLink]="['/services', rel.slug]" [appReveal]="i * 70">
+              <h3>{{ rel.name }}</h3>
+              <p>{{ rel.seoDescription }}</p>
+              <span class="link-sweep">View service <app-icon name="arrow-right" [size]="16" /></span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+  <section class="section cta-band">
+    <div class="container" [appReveal]>
+      <h2 class="section-title cta-title">Need {{ page.name | lowercase }}? Let's talk.</h2>
+      <p class="section-lede">
+        Send an enquiry with what you need, you'll get a clear scope, price and timeline
+        in writing, usually within a few hours.
+      </p>
+      <div class="cta-actions">
+        <a
+          class="btn btn--accent"
+          appMagnetic
+          routerLink="/contact"
+          [queryParams]="{ service: page.categoryName, message: 'I need: ' + page.name + '.' }"
+        >
+          Start a Project
+        </a>
+      </div>
+    </div>
+  </section>
+}

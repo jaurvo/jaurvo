@@ -1,0 +1,526 @@
+// Self-hosted fonts (no Google Fonts CDN): bundled with the app.
+@import '@fontsource/michroma/400.css';
+@import '@fontsource/sora/500.css';
+@import '@fontsource/sora/600.css';
+@import '@fontsource/sora/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
+// Jaurvo — global design system
+// Cinematic premium: warm-black / ivory, with GOLD as the single ambient
+// accent (taken from the black/gold logo). Matte surfaces, 1px borders,
+// soft shadows at most. No neon, no glow overload — just light.
+
+:root {
+  --bg: #F7F4EE;
+  --panel: #FFFEFA;
+  --sand: #ECE7D9;
+  --text: #161513;
+  --muted: #5C574D;
+  --line: #E2DCCB;
+  --line-strong: #CBC2A9;
+  --accent: #8C6B2A;
+  --accent-hover: #75571F;
+  --accent-ink: #6E5220;
+  --link: #6E5220;
+  --brass: #8C6B2A;
+  --secondary: #75571F;
+  --gold: #C8A15A;
+  --gold-deep: #8C6B2A;
+  --gold-wash: rgba(200, 161, 90, 0.16);
+  --copper: #A8622F;
+  --copper-soft: rgba(168, 98, 47, 0.12);
+  --emerald: #1E5B4F;
+  --emerald-soft: rgba(30, 91, 79, 0.1);
+  --grad-gold: linear-gradient(135deg, #F2D68A 0%, #C8A15A 48%, #9A5E2B 100%);
+  --grad-gold-soft: linear-gradient(135deg, rgba(242, 214, 138, 0.22), rgba(200, 161, 90, 0.1) 55%, rgba(154, 94, 43, 0.16));
+  --wa-green: #25D366;
+  --wa-green-hover: #1EBE5A;
+  --ink-btn: #161513;
+  --ink-btn-text: #F7F4EE;
+
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
+  --font-brand: "Michroma", "Sora", sans-serif;
+  --font-body: "Inter", "Manrope", system-ui, -apple-system, sans-serif;
+
+  --container: 1200px;
+  --radius: 14px;
+  --header-h: 56px;
+
+  @media (min-width: 1024px) { --header-h: 72px; }
+
+  --ease: cubic-bezier(0.22, 0.61, 0.21, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #100F0E;
+  --panel: #1A1815;
+  --sand: #221F1A;
+  --text: #F5F1E8;
+  --muted: #B3AA98;
+  --line: #2B2721;
+  --line-strong: #403A2D;
+  --accent: #C8A15A;
+  --accent-hover: #DDBA7E;
+  --accent-ink: #E8CD93;
+  --link: #E8CD93;
+  --brass: #C8A15A;
+  --secondary: #DDBA7E;
+  --gold: #C8A15A;
+  --gold-deep: #8C6B2A;
+  --gold-wash: rgba(200, 161, 90, 0.13);
+  --copper: #D08A4E;
+  --copper-soft: rgba(208, 138, 78, 0.12);
+  --emerald: #46A08A;
+  --emerald-soft: rgba(70, 160, 138, 0.12);
+  --grad-gold: linear-gradient(135deg, #F6DC9A 0%, #C8A15A 48%, #B07A35 100%);
+  --grad-gold-soft: linear-gradient(135deg, rgba(246, 220, 154, 0.16), rgba(200, 161, 90, 0.07) 55%, rgba(176, 122, 53, 0.12));
+  --wa-green: #25D366;
+  --wa-green-hover: #1EBE5A;
+  --ink-btn: #F5F1E8;
+  --ink-btn-text: #100F0E;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+// Safety net only: real overflow must be fixed at the offending element,
+// never hidden by this rule.
+html, body { max-width: 100%; overflow-x: clip; }
+section[id] { scroll-margin-top: 84px; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+img, video, iframe, svg { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, p, li, td, th { overflow-wrap: break-word; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+
+// ---------- layout ----------
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.section { padding-block: clamp(64px, 9vw, 112px); }
+.section--tight { padding-block: clamp(48px, 7vw, 80px); }
+.section--sand { background: var(--sand); }
+.section--panel { background: var(--panel); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+
+  &::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 56px);
+  max-width: 720px;
+  letter-spacing: -0.02em;
+}
+
+.section-lede {
+  margin-top: 16px;
+  max-width: 620px;
+  color: var(--muted);
+  font-size: clamp(16px, 1.6vw, 18px);
+}
+
+// ---------- buttons & links ----------
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease), background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease), color 0.25s var(--ease);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: translateY(-2px); }
+  }
+  &:active { transform: translateY(0) scale(0.98); }
+
+  app-icon { display: inline-flex; }
+}
+
+.btn--ink { background: var(--ink-btn); color: var(--ink-btn-text); }
+/* Primary CTA: gold-to-copper gradient, dark text, gradient sweep + shine on hover. */
+.btn--accent {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad-gold);
+  background-size: 160% 160%;
+  background-position: 0% 40%;
+  color: #1E1405;
+  border-color: transparent;
+  transition: transform 0.3s var(--ease-expo), background-position 0.5s var(--ease),
+    box-shadow 0.3s var(--ease);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -70%;
+    width: 45%;
+    height: 140%;
+    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
+    transform: skewX(-22deg);
+    transition: left 0.65s var(--ease-expo);
+    pointer-events: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn--accent:hover {
+    transform: translateY(-2px);
+    background-position: 90% 60%;
+    box-shadow: 0 10px 28px -8px rgba(168, 98, 47, 0.55);
+
+    &::after { left: 135%; }
+  }
+}
+.btn--accent:active { transform: translateY(0) scale(0.98); }
+
+.btn--wa { background: var(--wa-green); color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  .btn--wa:hover { background: var(--wa-green-hover); }
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--text);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { border-color: var(--text); }
+  }
+}
+
+.link-sweep {
+  position: relative;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1.5px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease);
+  }
+
+  &:focus-visible::after,
+  &.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+// ---------- service accents ----------
+// Only Brass (accent) and Ink are used as accents — no extra colours.
+[data-accent="brass"] { --service-accent: var(--accent); }
+[data-accent="green"] { --service-accent: var(--text); }
+
+// ---------- badges & chips ----------
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.badge--live { border-color: var(--accent); color: var(--accent-ink); }
+.badge--featured { background: var(--sand); border-color: var(--accent); color: var(--text); }
+
+.chip {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--sand);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+// ---------- motion system ----------
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero-line {
+  display: block;
+  opacity: 0;
+  animation: rise-in 0.65s var(--ease) forwards;
+  animation-delay: var(--line-delay, 0ms);
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes ken-burns {
+  from { transform: scale(1) translateY(0); }
+  to { transform: scale(1.08) translateY(-1.5%); }
+}
+
+@keyframes curtain-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-102%); }
+}
+
+@keyframes curtain-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(102%); }
+}
+
+// Slow ambient light drift (hero wash): transform-only, 26s loop.
+@keyframes wash-drift {
+  from { transform: translate3d(-6%, -4%, 0) scale(1); }
+  to { transform: translate3d(6%, 5%, 0) scale(1.12); }
+}
+
+// Sparse hero sparkles: opacity-only twinkle.
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+
+@keyframes float-y {
+  from { transform: translateY(-8px); }
+  to { transform: translateY(8px); }
+}
+
+// ---------- film grain (global, subtle) ----------
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .grain { opacity: 0.07; }
+
+// ---------- cursor spotlight cards ----------
+// Add appSpotlight to a card: a soft gold wash follows the cursor.
+.spotlight-card { position: relative; overflow: hidden; }
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    var(--gold-wash),
+    transparent 65%
+  );
+  transition: opacity 0.35s var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .spotlight-card:hover::before { opacity: 1; }
+}
+.spotlight-card > * { position: relative; z-index: 1; }
+
+// ---------- marquee ----------
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--panel);
+  padding-block: 18px;
+  user-select: none;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  animation: marquee-scroll 36s linear infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 48px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.marquee-item i {
+  font-style: normal;
+  color: var(--accent);
+  font-size: 11px;
+}
+
+// ---------- route page transition ----------
+main {
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+
+body.page-nav main {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+// ---------- forms ----------
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+
+  label { font-size: 14px; font-weight: 600; }
+
+  input, select, textarea {
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--text);
+    font: inherit;
+    font-size: 15px;
+    width: 100%;
+
+    &:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-color: var(--accent);
+    }
+  }
+
+  textarea { min-height: 120px; resize: vertical; }
+}
+
+// ---------- admin basics ----------
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+
+  th, td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+}
+
+.notice {
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.notice--accent { border-color: var(--accent); }
+
+// ---------- reduced motion ----------
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+  .hero-line { opacity: 1; }
+}

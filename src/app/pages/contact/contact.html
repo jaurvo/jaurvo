@@ -1,0 +1,190 @@
+<section class="section">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">Contact</p>
+      <h1 class="section-title">Let's build something your customers remember</h1>
+      <p class="section-lede">
+        Send an enquiry with what you need, you'll get a clear scope, price and timeline
+        in writing, usually within a few hours. No sign-ups.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <article class="contact-card" [appReveal]>
+          <span class="contact-icon"><app-icon name="phone" [size]="24" /></span>
+          <h2>Book a Call</h2>
+          <p>
+            Prefer to talk it through? Tap below and your phone will dial us
+            directly. Tell us what you need.
+          </p>
+          <a class="btn btn--accent" [href]="callHref">
+            <app-icon name="phone" [size]="16" />
+            Book a Call
+          </a>
+        </article>
+
+        <article class="contact-card" [appReveal]="100">
+          <span class="contact-icon"><app-icon name="mail" [size]="24" /></span>
+          <h2>Email</h2>
+          <p>
+            Prefer to write it out? Send your requirement by email and we'll reply with scope,
+            price and timeline.
+          </p>
+          <a class="btn btn--ghost" [href]="'mailto:' + email">{{ email }}</a>
+        </article>
+
+        <article class="contact-card" [appReveal]="200">
+          <span class="contact-icon"><app-icon name="share-2" [size]="24" /></span>
+          <h2>Follow the studio</h2>
+          <p>
+            See new work, designs and offers as they go live, follow
+            <strong>{{ socialHandle }}</strong> on Instagram and YouTube.
+          </p>
+          <div class="social-row">
+            <a class="social-btn" [href]="instagramUrl" target="_blank" rel="noopener" [attr.aria-label]="'Jaurvo on Instagram, ' + socialHandle">
+              <app-icon name="instagram" [size]="20" />
+            </a>
+            <a class="social-btn" [href]="youtubeUrl" target="_blank" rel="noopener" [attr.aria-label]="'Jaurvo on YouTube, ' + socialHandle">
+              <app-icon name="youtube" [size]="20" />
+            </a>
+            <span class="social-handle">{{ socialHandle }}</span>
+          </div>
+        </article>
+
+        <article class="contact-card" [appReveal]="300">
+          <span class="contact-icon"><app-icon name="globe" [size]="24" /></span>
+          <h2>Service areas</h2>
+          <p>
+            <strong>Headquartered in Hitech City, Hyderabad, India, serving clients worldwide.</strong><br>
+            Websites in English, with Arabic (RTL) websites available for Gulf clients.
+          </p>
+        </article>
+      </div>
+
+      <div class="enquiry" [appReveal]="120">
+        <h2>Send an enquiry</h2>
+        <p class="enquiry-sub">
+          Fill this in and send, it reaches us instantly, and we reply by email or on the
+          contact you shared with a fixed quote. Tell us your budget and we'll shape the
+          scope to fit it.
+        </p>
+
+        @if (sent()) {
+          <div class="notice notice--accent sent-box">
+            <h3>Thank you, your enquiry is on its way.</h3>
+            <p>
+              We usually reply within a few hours with scope, price and timeline in writing.
+              If our system was unavailable, an email draft opened instead so nothing is lost.
+            </p>
+          </div>
+        } @else {
+          <form (ngSubmit)="submit()" #enquiryForm="ngForm">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input
+                id="f-name"
+                type="text"
+                required
+                autocomplete="name"
+                placeholder="e.g. Ahmed Al Harbi"
+                [ngModel]="name()"
+                (ngModelChange)="name.set($event)"
+                name="name"
+              >
+            </div>
+
+            <div class="field">
+              <label for="f-contact">Your contact, phone or email</label>
+              <input
+                id="f-contact"
+                type="text"
+                required
+                autocomplete="email"
+                placeholder="So we can reply to you"
+                [ngModel]="contact()"
+                (ngModelChange)="contact.set($event)"
+                name="contact"
+              >
+            </div>
+
+            <div class="field">
+              <label for="f-service">What do you need?</label>
+              <select
+                id="f-service"
+                [ngModel]="service()"
+                (ngModelChange)="service.set($event)"
+                name="service"
+              >
+                @for (name of serviceNames; track name) {
+                  <option [value]="name">{{ name }}</option>
+                }
+                <option value="Something else">Something else</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="f-budget">Your budget (optional)</label>
+              <input
+                id="f-budget"
+                type="text"
+                autocomplete="off"
+                placeholder="e.g. 10000, or flexible, tell us what works for you"
+                [ngModel]="budget()"
+                (ngModelChange)="budget.set($event)"
+                name="budget"
+              >
+            </div>
+
+            <div class="field">
+              <label for="f-message">Tell us about your project</label>
+              <textarea
+                id="f-message"
+                placeholder="Your business, what you want built, any links or examples you like…"
+                [ngModel]="message()"
+                (ngModelChange)="message.set($event)"
+                name="message"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn--accent submit-btn"
+              [disabled]="!name().trim() || !contact().trim() || sending()"
+            >
+              <app-icon name="send" [size]="20" />
+              {{ sending() ? 'Sending…' : 'Send enquiry' }}
+            </button>
+            <p class="form-note">
+              Your details are used only to reply to this enquiry, never sold, never shared.
+              See our <a routerLink="/privacy" class="link-sweep">Privacy Policy</a>.
+              Submitting saves your enquiry; if the system is unavailable, an email draft
+              opens instead.
+            </p>
+          </form>
+        }
+      </div>
+    </div>
+
+    <ol class="steps steps--contact">
+      <li class="step" [appReveal]>
+        <span class="step-num">1</span>
+        <span class="step-when">Same day</span>
+        <h3>You send your requirement</h3>
+        <p>Fill in the enquiry form describing what you need, a website, an invitation, a logo, anything from the Services page.</p>
+      </li>
+      <li class="step" [appReveal]="100">
+        <span class="step-num">2</span>
+        <span class="step-when">In writing</span>
+        <h3>You get a fixed quote</h3>
+        <p>Scope, price and timeline confirmed in writing before you pay anything. No obligation, no pressure.</p>
+      </li>
+      <li class="step" [appReveal]="200">
+        <span class="step-num">3</span>
+        <span class="step-when">Days 1 to 7</span>
+        <h3>We build &amp; launch</h3>
+        <p>50% advance starts the work, a live preview follows, and the balance is due only when you approve the delivery.</p>
+      </li>
+    </ol>
+  </div>
+</section>

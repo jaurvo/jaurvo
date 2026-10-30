@@ -1,0 +1,177 @@
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+  padding-top: 64px;
+  /* 96px clearance above the page bottom so footer text is never
+     covered by a floating action on short screens. */
+  padding-bottom: 96px;
+}
+
+.footer-wordmark-wrap { overflow: hidden; }
+
+.footer-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(48px, 11.5vw, 148px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--text);
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
+  overflow-wrap: normal;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: none;
+  transition: transform 0.7s var(--ease);
+}
+
+/* Hidden state only once JS has added .footer-reveal-ready; without JS
+   the wordmark is fully visible. Reveal animates transform only. */
+.footer-reveal-ready .word-inner { transform: translateY(110%); }
+.footer-reveal-ready.revealed .word-inner { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-reveal-ready .word-inner { transform: none; transition: none; }
+}
+
+.footer-tagline {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.footer-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 48px;
+
+  @media (min-width: 768px) { grid-template-columns: repeat(6, 1fr); }
+
+  a {
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    min-width: 0;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.footer-grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+  padding-bottom: 48px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1.5fr 0.8fr 0.9fr 0.7fr 1.2fr;
+    gap: 28px;
+  }
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.social-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px !important;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent-ink); }
+  }
+}
+
+.footer-handle { font-size: 14px; color: var(--muted); }
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 11px;
+  background: var(--grad-gold);
+  color: #1E1405;
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.45);
+  margin-bottom: 14px;
+}
+
+.footer-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; }
+.footer-tag {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.footer-blurb { margin-top: 14px; color: var(--muted); font-size: 14.5px; max-width: 320px; }
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h3 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    min-height: 44px;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { color: var(--accent-ink); }
+    }
+  }
+}
+
+.footer-base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  justify-content: space-between;
+  padding-block: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  color: var(--muted);
+}
+

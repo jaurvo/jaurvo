@@ -1,0 +1,38 @@
+@let p = project();
+
+<article class="card">
+  <a class="card-media" [href]="p.liveUrl" target="_blank" rel="noopener" [attr.aria-label]="p.title + ', view live site'">
+    <img [src]="p.image" [srcset]="p.image.replace('.jpg', '-sm.jpg') + ' 640w, ' + p.image + ' 1100w'" sizes="(max-width: 640px) 92vw, 420px" [alt]="p.alt" loading="lazy" decoding="async" width="800" height="500">
+    <span class="card-badges">
+      @if (p.featured) {
+        <span class="badge badge--featured">Featured</span>
+      }
+      <span [class]="badgeClass(p)">{{ p.badgeText }}</span>
+    </span>
+  </a>
+
+  <div class="card-body">
+    <h3 class="card-title">{{ p.title }}</h3>
+    <p class="card-meta">{{ p.meta }}</p>
+
+    @if (showDescription()) {
+      <p class="card-desc">{{ p.description }}</p>
+    }
+
+    <div class="card-tags">
+      @for (tag of p.tags; track tag) {
+        <span class="chip">{{ tag }}</span>
+      }
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn--ink card-btn" [href]="p.liveUrl" target="_blank" rel="noopener">
+        View live site
+        <app-icon name="arrow-up-right" [size]="16" />
+      </a>
+      <a class="btn btn--ghost card-btn" routerLink="/contact" [queryParams]="{ message: 'I saw ' + p.title + ' and want something like it.' }">
+        I want something like this
+      </a>
+    </div>
+  </div>
+</article>

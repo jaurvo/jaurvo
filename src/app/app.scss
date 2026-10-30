@@ -1,0 +1,57 @@
+main {
+  display: block;
+  min-height: 60vh;
+}
+
+/* Soft pointer-follow wash on the page background. Hidden on touch. */
+.pointer-glow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 11%, transparent) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  will-change: transform;
+}
+
+@media (pointer: fine) {
+  .pointer-glow.is-live { opacity: 0.65; }
+  .pointer-glow.is-live.is-pressed { opacity: 0.85; }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .pointer-glow { display: none; }
+}
+
+/* Splash-cursor canvas: fixed full-screen ink layer, never intercepts clicks. */
+.splash-cursor {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1200;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-cursor { display: none; }
+}
+
+/* Click-spark canvas: same fixed layer contract as the splash cursor. */
+.click-spark {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1201;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .click-spark { display: none; }
+}

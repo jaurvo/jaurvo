@@ -1,0 +1,269 @@
+.page-head { padding-bottom: 8px; }
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.service-block {
+  position: relative;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(24px, 4vw, 40px);
+  scroll-margin-top: calc(var(--header-h) + 24px);
+  transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--grad-gold);
+    transform: scaleX(0.22);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-expo);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: var(--gold);
+      box-shadow: 0 24px 48px -16px rgba(22, 21, 19, 0.2);
+
+      &::before { transform: scaleX(1); }
+    }
+  }
+
+  h2 { font-size: clamp(24px, 3vw, 32px); }
+}
+
+.service-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.service-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Compact category image: small, rounded, hover zoom + gold ring. */
+.service-figure {
+  margin: 0 0 0 auto;
+  width: 172px;
+  height: 98px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  flex: none;
+  transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.service-figure-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s var(--ease-expo);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-block:hover .service-figure {
+    border-color: var(--gold);
+    box-shadow: 0 10px 28px -14px rgb(0 0 0 / 0.45);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-block:hover .service-figure-img { transform: scale(1.09); }
+}
+
+@media (max-width: 640px) {
+  .service-figure { width: 100%; height: 128px; margin: 12px 0 0; }
+}
+
+.service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--grad-gold);
+  color: #1E1405;
+  flex-shrink: 0;
+  box-shadow: 0 10px 24px -8px rgba(168, 98, 47, 0.5);
+  transition: transform 0.35s var(--ease-expo);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-block:hover .service-icon { transform: translateY(-3px) rotate(-6deg); }
+}
+
+.service-code { font-size: 12.5px; font-weight: 600; letter-spacing: 0.1em; color: var(--muted); }
+
+.service-accent-chip {
+  margin-left: auto;
+  border-color: var(--service-accent, var(--accent));
+  color: var(--text);
+}
+
+.service-desc { margin-top: 18px; color: var(--muted); font-size: 16px; max-width: 720px; }
+
+.sub-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.sub-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--bg);
+  transition: transform 0.35s var(--ease-expo), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+
+  .sub-thumb {
+    display: block;
+    width: calc(100% + 40px);
+    height: 88px;
+    object-fit: cover;
+    margin: -20px -20px 14px;
+    border-radius: 12px 12px 0 0;
+    transition: transform 0.55s var(--ease-expo), filter 0.35s var(--ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover .sub-thumb { transform: scale(1.06); }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: var(--grad-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--ease-expo);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 18px 36px -12px rgba(22, 21, 19, 0.2), 0 0 0 1px var(--gold-wash);
+
+      &::before { transform: scaleX(1); }
+    }
+  }
+
+  .sub-name {
+    font-family: var(--font-display);
+    font-size: 16.5px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text);
+    margin-bottom: 6px;
+    transition: color 0.3s var(--ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover .sub-name { color: var(--accent-ink); }
+  }
+
+  p { color: var(--muted); font-size: 14px; }
+}
+
+.service-detail-row {
+  display: grid;
+  gap: 28px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+
+  @media (min-width: 1024px) { grid-template-columns: 1fr 1fr; gap: 44px; }
+}
+
+.service-side {
+  h3 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; }
+    app-icon { color: var(--emerald); flex-shrink: 0; margin-top: 2px; }
+  }
+
+  p { color: var(--muted); font-size: 15px; }
+}
+
+.service-order-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+
+  > div { display: flex; flex-direction: column; }
+}
+
+.price-note { font-size: 12px; color: var(--muted); }
+.price-value { font-weight: 700; font-size: 19px; }
+
+.services-currency { margin-top: 20px; }
+.sub-links { display: flex; gap: 18px; align-items: center; margin-top: 4px; }
+
+.sub-more { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: var(--accent-ink); }
+
+.sub-quote {
+  display: inline-flex;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-ink);
+}
+.service-order-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.service-budget {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--accent-ink);
+}
+.price-negotiable {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-ink);
+}

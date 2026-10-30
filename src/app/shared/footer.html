@@ -1,0 +1,91 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-wordmark-wrap" aria-hidden="true">
+      <p class="footer-wordmark"><span class="word-inner">Jaurvo</span></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="footer-strip" aria-label="Jaurvo services">
+      @for (img of stripImages; track img) {
+        <a routerLink="/services" aria-label="Jaurvo design work, services">
+          <img
+            [src]="img"
+            [srcset]="img.replace('.webp', '-sm.webp') + ' 480w, ' + img + ' 800w'"
+            sizes="240px"
+            [alt]="'Jaurvo design work'"
+            width="480"
+            height="320"
+            loading="lazy"
+            decoding="async"
+          >
+        </a>
+      }
+    </div>
+  </div>
+
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="brand-mark">JV</span>
+      <p class="footer-name">Jaurvo</p>
+      <p class="footer-blurb">
+        Websites, invitation websites, logos, posters and social media designs
+        for clients worldwide.
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Explore">
+      <h3>Explore</h3>
+      <a class="link-sweep" routerLink="/">Home</a>
+      <a class="link-sweep" routerLink="/services">Services</a>
+      <a class="link-sweep" routerLink="/work">Our Work</a>
+      <a class="link-sweep" routerLink="/about">About</a>
+      <a class="link-sweep" routerLink="/contact">Contact</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Services">
+      <h3>Services</h3>
+      <a class="link-sweep" routerLink="/services" fragment="websites">Websites</a>
+      <a class="link-sweep" routerLink="/services" fragment="invitations">Invitation Websites</a>
+      <a class="link-sweep" routerLink="/services" fragment="logo">Logo &amp; Branding</a>
+      <a class="link-sweep" routerLink="/services" fragment="posters">Posters &amp; Banners</a>
+      <a class="link-sweep" routerLink="/services" fragment="social">Social Media Designs</a>
+      <a class="link-sweep" routerLink="/services" fragment="content">Content Writing</a>
+      <a class="link-sweep" routerLink="/services" fragment="ai">AI Services</a>
+      <a class="link-sweep" routerLink="/services" fragment="dashboards">Dashboards &amp; Business Tools</a>
+      <a class="link-sweep" routerLink="/services" fragment="seo">SEO &amp; Growth</a>
+      <a class="link-sweep" routerLink="/services" fragment="uiux">UI/UX Design</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Legal">
+      <h3>Legal</h3>
+      <a class="link-sweep" routerLink="/privacy">Privacy Policy</a>
+      <a class="link-sweep" routerLink="/terms">Terms of Service</a>
+    </nav>
+
+    <div class="footer-col">
+      <h3>Reach us</h3>
+      <div class="footer-social">
+        <a class="social-btn" [href]="instagramUrl" target="_blank" rel="noopener" [attr.aria-label]="'Instagram, ' + socialHandle">
+          <app-icon name="instagram" [size]="20" />
+        </a>
+        <a class="social-btn" [href]="youtubeUrl" target="_blank" rel="noopener" [attr.aria-label]="'YouTube, ' + socialHandle">
+          <app-icon name="youtube" [size]="20" />
+        </a>
+      </div>
+      <span class="footer-handle">{{ socialHandle }} on Instagram &amp; YouTube</span>
+      <a class="link-sweep" [href]="'mailto:' + email">
+        <app-icon name="mail" [size]="16" /> Email, {{ email }}
+      </a>
+      <a class="link-sweep" routerLink="/contact">
+        <app-icon name="arrow-right" [size]="16" /> Start a project
+      </a>
+    </div>
+  </div>
+
+  <div class="container footer-base">
+    <span>© 2026 Jaurvo. All rights reserved.</span>
+    <span>Jaurvo, Hitech City, Hyderabad, India. Websites and designs for clients worldwide.</span>
+    <a class="link-sweep" href="#top">Back to top</a>
+  </div>
+</footer>

@@ -1,0 +1,197 @@
+<section class="section">
+  <div class="container about-grid">
+    <div [appReveal]>
+      <img
+        class="about-img"
+        src="assets/gen/about-studio-new.webp"
+        srcset="assets/gen/about-studio-new-sm.webp 640w, assets/gen/about-studio-new.webp 1600w"
+        sizes="(max-width: 640px) 92vw, 520px"
+        alt="The Jaurvo team workspace in Hyderabad"
+        width="1600"
+        height="1067"
+        loading="lazy"
+        decoding="async"
+      >
+      <p class="about-name">Jaurvo</p>
+    </div>
+
+    <div [appReveal]="120">
+      <p class="eyebrow">01, About</p>
+      <h1 class="section-title">A full team. <em>One studio.</em></h1>
+      <p class="about-text">
+        <strong>Jaurvo</strong> is a web &amp; design studio headquartered in
+        <strong>Hitech City, Hyderabad, India</strong>, founded by <strong>Jauhar Ayyub</strong>, a
+        Software Engineer. Behind every project stands a complete team, design, development,
+        content, data and AI, building websites, brands and invitation experiences for clients
+across the world.
+      </p>
+      <p class="about-text">
+        Because the whole team works under one roof, your project never waits on an outside
+        freelancer. One studio confirms your scope and fixed price in writing, builds it, and
+        answers for it after launch.
+      </p>
+      <p class="about-text">
+        The team works in English, Hindi and Urdu daily, and builds bilingual English /
+        Arabic websites for Gulf clients, so every client gets a website that feels made for
+        them.
+      </p>
+      <div class="disciplines">
+        <span class="disciplines-label">Our disciplines</span>
+        @for (d of disciplines; track d) {
+          <span class="chip">{{ d }}</span>
+        }
+      </div>
+
+      <div class="about-ctas">
+        <a class="btn btn--ink" routerLink="/work">
+          See the live work
+          <app-icon name="arrow-right" [size]="16" />
+        </a>
+        <a class="btn btn--ghost" routerLink="/contact">
+          Start your project
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION, VISION, VALUES -->
+<section class="section section--sand">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">02, What Drives Us</p>
+      <h2 class="section-title">Built on purpose, not accident</h2>
+    </div>
+
+    <div class="mv-grid">
+      <article class="mv-card" [appReveal]>
+        <h3>Our Mission</h3>
+        <p>
+          To give every business, from a neighbourhood shop to a growing company,
+          a digital presence it can be proud of. Websites, brands and designs that
+          look premium, work flawlessly and bring customers, delivered at honest
+          prices with timelines we stand behind.
+        </p>
+      </article>
+      <article class="mv-card" [appReveal]="120">
+        <h3>Our Vision</h3>
+        <p>
+          To be the studio that businesses across India, the Gulf and the US
+          recommend to each other. Known for premium work at honest prices, and
+          for treating every client's business like our own.
+        </p>
+      </article>
+    </div>
+
+    <h3 class="values-title" [appReveal]>Our Core Values</h3>
+    <div class="values-grid">
+      <article class="value-card" [appReveal]>
+        <h4>Safety</h4>
+        <p>Our culture and obligation to every team member.</p>
+      </article>
+      <article class="value-card" [appReveal]="80">
+        <h4>Quality</h4>
+        <p>A promise we undertake with each endeavor.</p>
+      </article>
+      <article class="value-card" [appReveal]="160">
+        <h4>Teamwork</h4>
+        <p>Excellence through collaboration and trust.</p>
+      </article>
+      <article class="value-card" [appReveal]="240">
+        <h4>Innovation</h4>
+        <p>Embracing the latest technologies.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--panel">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">03, The Team</p>
+      <h2 class="section-title">The people behind the work</h2>
+      <p class="section-lede">
+        Four specialists lead the studio, backed by 11 full-time employees, so design,
+        code, content, data and AI are each handled by someone whose craft it actually is.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      @for (member of team; track member.name; let i = $index) {
+        <article class="team-card" [appReveal]="i * 90">
+          <span class="team-avatar" aria-hidden="true">{{ member.initials }}</span>
+          @if (member.portfolioUrl) {
+            <h3><a [href]="member.portfolioUrl" target="_blank" rel="noopener" [attr.aria-label]="member.name + ', View portfolio'">{{ member.name }}</a></h3>
+            <p>{{ member.role }}</p>
+            <a class="team-portfolio" [href]="member.portfolioUrl" target="_blank" rel="noopener">View portfolio</a>
+          } @else {
+            <h3>{{ member.name }}</h3>
+            <p>{{ member.role }}</p>
+          }
+        </article>
+      }
+      <article class="team-card team-card--more" [appReveal]="360">
+        <span class="team-avatar" aria-hidden="true">+11</span>
+        <h3>Full-time employees</h3>
+        <p>Designers, developers &amp; support staff behind every project</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">04, Reviews</p>
+      <h2 class="section-title">What clients say</h2>
+    </div>
+
+    @if (content.reviews().length > 0) {
+      <div class="reviews">
+        @for (review of content.reviews(); track review.name + review.text) {
+          <blockquote class="review" [appReveal]>
+            <span class="review-stars" [attr.aria-label]="review.rating + ' out of 5 stars'">
+              @for (star of [1, 2, 3, 4, 5]; track star) {
+                <app-icon name="star" [size]="16" />
+              }
+            </span>
+            <p>“{{ review.text }}”</p>
+            @if (review.service) {
+              <span class="review-service">{{ review.service }}</span>
+            }
+            <cite>{{ review.name }}</cite>
+          </blockquote>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">05, How We Work</p>
+      <h2 class="section-title">The same four steps, every project</h2>
+    </div>
+    <ol class="steps">
+      @for (step of steps; track step.title; let i = $index) {
+        <li class="step" [appReveal]="i * 100">
+          <span class="step-num">{{ i + 1 }}</span>
+          <span class="step-when">{{ step.when }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </li>
+      }
+    </ol>
+
+    <div class="about-ctas about-ctas--center" [appReveal]>
+      <a class="btn btn--accent" routerLink="/contact">
+        Start your project
+      </a>
+      <a class="btn btn--ghost" routerLink="/services">
+        See services &amp; prices
+        <app-icon name="arrow-right" [size]="16" />
+      </a>
+    </div>
+  </div>
+</section>

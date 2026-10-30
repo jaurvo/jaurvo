@@ -1,0 +1,541 @@
+<!-- HERO, cinematic: particle field, drifting gold wash, giant staggered headline -->
+<section class="hero">
+  <div class="hero-wash" aria-hidden="true"></div>
+  <canvas class="hero-particles" appParticles aria-hidden="true"></canvas>
+  <div class="hero-sparkles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="container hero-grid">
+  <div class="hero-copy">
+    <p class="eyebrow hero-fade" style="--line-delay: 0ms">Design and Web Studio, Hyderabad, India, working worldwide</p>
+    <h1 class="hero-title">
+      <span class="hero-line" style="--line-delay: 60ms">We build websites, brands and designs</span>
+      <span class="hero-line" style="--line-delay: 160ms">that bring you <span class="hl">customers.</span></span>
+    </h1>
+    <p class="hero-sub hero-fade" style="--line-delay: 300ms">
+      Jaurvo is a 15+ expert team. Business websites, logos, wedding invitations, UI/UX and SEO,
+      designed properly, priced honestly, delivered on time.
+    </p>
+
+    <div class="hero-make hero-fade" style="--line-delay: 380ms">
+      <span class="hero-make-label">What we make</span>
+      <span class="hero-make-window" aria-live="polite">
+        <span
+          class="hero-make-track"
+          [class.hero-make-track--instant]="rollInstant()"
+          [style.transform]="'translateY(-' + (rotateIndex() * 100) / serviceNames.length + '%)'"
+        >
+          @for (name of serviceNames; track name) {
+            <span class="hero-make-word">{{ name }}</span>
+          }
+        </span>
+      </span>
+    </div>
+
+    <div class="hero-ctas hero-fade" style="--line-delay: 460ms">
+      <a class="btn btn--accent" appMagnetic routerLink="/contact">
+        Start a Project
+      </a>
+      <a class="btn btn--ghost" appMagnetic routerLink="/services">
+        Explore services
+        <app-icon name="arrow-right" [size]="20" />
+      </a>
+    </div>
+    <p class="hero-trust hero-fade" style="--line-delay: 540ms">Fixed quote in writing, 50% advance with balance on delivery, domain and hosting included for the first year</p>
+  </div>
+  <div class="hero-visual hero-fade" style="--line-delay: 320ms">
+    @if (ballVisible()) {
+      <canvas class="crystal-ball" appCrystalBall aria-hidden="true"></canvas>
+    }
+    <div class="hero-visual-lockup" aria-hidden="true">
+      <span class="hero-visual-name">jaurvo</span>
+      <span class="hero-visual-tag">lets build together</span>
+    </div>
+  </div>
+  </div>
+  <a class="hero-scroll hero-fade" style="--line-delay: 700ms" href="#services" aria-label="Scroll to services">
+    <span>Scroll</span>
+    <span class="hero-scroll-line" aria-hidden="true"></span>
+  </a>
+</section>
+
+<!-- SERVICES MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Websites <i>◆</i></span>
+    <span class="marquee-item">Logo &amp; Branding <i>◆</i></span>
+    <span class="marquee-item">Invitation Websites <i>◆</i></span>
+    <span class="marquee-item">UI/UX Design <i>◆</i></span>
+    <span class="marquee-item">SEO &amp; Growth <i>◆</i></span>
+    <span class="marquee-item">Social Media Designs <i>◆</i></span>
+    <span class="marquee-item">Posters &amp; Banners <i>◆</i></span>
+    <span class="marquee-item">Content Writing <i>◆</i></span>
+    <span class="marquee-item">AI Services <i>◆</i></span>
+    <span class="marquee-item">Dashboards &amp; Business Tools <i>◆</i></span>
+    <span class="marquee-item">Websites <i>◆</i></span>
+    <span class="marquee-item">Logo &amp; Branding <i>◆</i></span>
+    <span class="marquee-item">Invitation Websites <i>◆</i></span>
+    <span class="marquee-item">UI/UX Design <i>◆</i></span>
+    <span class="marquee-item">SEO &amp; Growth <i>◆</i></span>
+    <span class="marquee-item">Social Media Designs <i>◆</i></span>
+    <span class="marquee-item">Posters &amp; Banners <i>◆</i></span>
+    <span class="marquee-item">Content Writing <i>◆</i></span>
+    <span class="marquee-item">AI Services <i>◆</i></span>
+    <span class="marquee-item">Dashboards &amp; Business Tools <i>◆</i></span>
+  </div>
+</div>
+
+<!-- STATS STRIP, honest numbers only -->
+<section class="stats-strip" aria-label="Jaurvo in numbers">
+  <div class="container">
+    <dl class="stats-row">
+      <div>
+        <dt class="stat-num"><span [appCounter]="3">0</span>+</dt>
+        <dd>Years Experience</dd>
+      </div>
+      <div>
+        <dt class="stat-num"><span [appCounter]="50">0</span>+</dt>
+        <dd>Projects Delivered</dd>
+      </div>
+      <div>
+        <dt class="stat-num"><span [appCounter]="15">0</span>+</dt>
+        <dd>Expert Team</dd>
+      </div>
+      <div>
+        <dt class="stat-num"><span [appCounter]="totalSubServices">0</span></dt>
+        <dd>Services &amp; designs on the full list</dd>
+      </div>
+      <div>
+        <dt class="stat-num">2 to 4 days</dt>
+        <dd>Typical delivery time</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- PROBLEM / SOLUTION BRIDGE -->
+<section class="bridge">
+  <div class="container">
+    <p class="bridge-text">Most business websites get almost no enquiries. Jaurvo builds yours around one job: turning visitors into customers.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">01, Services</p>
+      <h2 class="section-title">Everything your business needs to look properly professional</h2>
+      <p class="section-lede">
+        Ten services, one studio. Every price is shown up front, send an enquiry and
+        get a fixed quote in writing.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      @for (service of content.services(); track service.key; let i = $index) {
+        <article class="service-card spotlight-card" appSpotlight [attr.data-accent]="service.accent" [appReveal]="(i % 3) * 90">
+          <img
+            class="service-card-img"
+            [src]="service.image"
+            [srcset]="service.image.replace('.webp', '-sm.webp') + ' 480w, ' + service.image + ' 800w'"
+            sizes="(max-width: 640px) 92vw, 380px"
+            [alt]="service.name + ', Jaurvo service'"
+            width="1600"
+            height="1067"
+            loading="lazy"
+            decoding="async"
+          >
+          <div class="service-top">
+            <span class="service-icon"><app-icon [name]="service.icon" [size]="24" /></span>
+            <span class="service-code">{{ service.code }}</span>
+          </div>
+          <h3>{{ service.name }}</h3>
+          <p>{{ service.short }}</p>
+          <ul class="service-subs">
+            @for (sub of service.subServices.slice(0, 6); track sub.name) {
+              <li>{{ sub.name }}</li>
+            }
+          </ul>
+          <a class="service-more" routerLink="/services" [fragment]="service.key">
+            and more
+            <app-icon name="arrow-right" [size]="16" />
+          </a>
+          <div class="service-foot">
+            <div class="service-price">
+              <span class="price-note">{{ service.priceNote }}</span>
+              <span class="price-value">{{ currency.formatOrRequest(service.priceUsd) }}</span>
+              <span class="price-negotiable">Price negotiable</span>
+            </div>
+            <a class="link-sweep service-order" routerLink="/contact" [queryParams]="{ service: service.name }">
+              Get a Quote
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES INDEX, interactive agency overview -->
+<section class="section cap-index" id="capabilities">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">02, Everything we do</p>
+      <h2 class="section-title">One studio, <em>every skill your business needs</em></h2>
+      <p class="section-lede">
+        Ten departments under one roof, from the first logo sketch to the website
+        that brings you customers. Hover a department to preview it, tap to open
+        the full service.
+      </p>
+    </div>
+    <div
+      class="cap-list"
+      [appReveal]
+      (mousemove)="onCapMove($event)"
+      (mouseleave)="capHover.set(null)"
+    >
+      @for (service of content.services(); track service.key; let i = $index) {
+        <a
+          class="cap-row"
+          routerLink="/services"
+          (mouseenter)="capHover.set(i)"
+          (focus)="capHover.set(i)"
+          (blur)="capHover.set(null)"
+          [class.cap-row--active]="capHover() === i"
+          [attr.aria-label]="service.name + ', ' + service.subServices.length + ' services, open all services'"
+        >
+          <span class="cap-num">{{ service.code }}</span>
+          <span class="cap-main">
+            <span class="cap-title">{{ service.name }}</span>
+            <span class="cap-subs">{{ capSubLine(service) }}</span>
+          </span>
+          <span class="cap-count">{{ service.subServices.length }} services</span>
+          <app-icon name="arrow-up-right" [size]="22" class="cap-arrow" />
+        </a>
+      }
+    </div>
+  </div>
+  <div
+    class="cap-preview"
+    [class.cap-preview--show]="capHover() !== null"
+    [style.transform]="'translate(' + capPos().x + 'px,' + capPos().y + 'px) rotate(' + capTilt() + 'deg)'"
+    aria-hidden="true"
+  >
+    @if (capHover() !== null) {
+      <img
+        [src]="content.services()[capHover()!].image"
+        [alt]=""
+        width="600"
+        height="338"
+        loading="lazy"
+      >
+    }
+  </div>
+</section>
+
+<!-- INVITATION SPOTLIGHT, service only, no client example -->
+<section class="section spotlight">
+  <div class="container spotlight-grid">
+    <div class="spotlight-copy" [appReveal]>
+      <p class="eyebrow">03, Invitation Spotlight</p>
+      <h2 class="section-title">Invitation websites that feel like a celebration</h2>
+      <p class="section-lede">
+        A printed card gets lost. A Jaurvo invitation lives in every guest's phone,
+        with your story, countdown, venue map and one-tap RSVP.
+      </p>
+      <div class="spotlight-ctas">
+        <a class="btn btn--accent" routerLink="/contact" [queryParams]="{ service: 'Invitation Websites' }">
+          Get a Quote
+        </a>
+        <a class="btn btn--ghost" routerLink="/services" fragment="invitations">
+          See invitation services
+          <app-icon name="arrow-right" [size]="16" />
+        </a>
+      </div>
+    </div>
+
+    <div class="spotlight-figure" appReveal>
+      <img
+        class="spotlight-img"
+        src="assets/gen/spotlight-invitation-new.webp"
+        srcset="assets/gen/spotlight-invitation-new-sm.webp 640w, assets/gen/spotlight-invitation-new.webp 1600w"
+        sizes="(max-width: 640px) 92vw, 560px"
+        alt="Elegant wedding invitation designs by Jaurvo"
+        width="1600"
+        height="1067"
+        loading="lazy"
+        decoding="async"
+      >
+      <p class="spotlight-caption">
+        <span class="badge">Invitation Websites</span>
+        Story, countdown, venue map and one-tap RSVP. Starting from {{ currency.format(53) }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section section--sand" id="process">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">04, Process</p>
+      <h2 class="section-title">How we build, from first message to live website</h2>
+      <p class="section-lede">
+        Most websites are live within a week. Invitation websites are usually ready in 1 to 2 days.
+      </p>
+    </div>
+
+    <ol class="steps">
+      @for (step of steps; track step.title; let i = $index) {
+        <li class="step" [appReveal]="i * 100">
+          <span class="step-num">{{ i + 1 }}</span>
+          <span class="step-when">{{ step.when }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section" id="why">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">05, Why Work With Us</p>
+      <h2 class="section-title">A full team, working like it matters, because it does</h2>
+      <p class="section-lede">
+        Most small businesses choose between a lone freelancer and an expensive agency.
+        Jaurvo is the third option: a complete team, founder-led, at an honest price.
+      </p>
+    </div>
+
+    <div class="benefits">
+      @for (benefit of benefits; track benefit.title; let i = $index) {
+        <article class="benefit" [appReveal]="(i % 2) * 90">
+          <span class="benefit-num">0{{ i + 1 }}</span>
+          <h3>{{ benefit.title }}</h3>
+          <p>{{ benefit.text }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="compare" [appReveal]>
+      <h3 class="compare-title">Jaurvo, compared honestly</h3>
+      <div class="compare-scroll">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Aspect</span></th>
+              <th scope="col">Jaurvo</th>
+              <th scope="col">Typical freelancer</th>
+              <th scope="col">Big agency</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of comparison; track row.aspect) {
+              <tr>
+                <th scope="row">{{ row.aspect }}</th>
+                <td class="compare-jaur">{{ row.jaur }}</td>
+                <td>{{ row.freelancer }}</td>
+                <td>{{ row.agency }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="commitments" [appReveal]>
+      <h3 class="commitments-title">Our commitments, in writing</h3>
+      <ul>
+        @for (line of commitments; track line) {
+          <li><app-icon name="check" [size]="16" /> {{ line }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section section--sand" id="pricing">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">06, Pricing</p>
+      <h2 class="section-title">Clear prices. No surprises.</h2>
+      <p class="section-lede">
+        Every project starts with a fixed quote through the enquiry form. These are starting
+        prices, your final quote depends only on the pages and features you choose.
+      </p>
+    </div>
+
+    <div class="pricing-tools" [appReveal]>
+      <app-currency-switcher />
+      <p class="pricing-negotiable-line">Prices are starting points. Tell us your budget, we'll shape the scope to fit it.</p>
+    </div>
+
+    <div class="plans">
+      @for (plan of plans; track plan.name; let i = $index) {
+        <article class="plan spotlight-card" appSpotlight [class.plan--featured]="plan.featured" [appReveal]="i * 100">
+          @if (plan.featured) {
+            <span class="badge badge--featured plan-badge">Most Booked</span>
+          }
+          <h3>{{ plan.name }}</h3>
+          <p class="plan-tag">{{ plan.tagline }}</p>
+          <p class="plan-from">Starting from</p>
+          <p class="plan-price">{{ currency.format(plan.priceUsd) }}</p>
+          <p class="plan-negotiable">Price negotiable</p>
+          <ul class="plan-features">
+            @for (feature of plan.features; track feature) {
+              <li><app-icon name="check" [size]="16" /> {{ feature }}</li>
+            }
+          </ul>
+          <a class="btn plan-btn" [class.btn--accent]="plan.featured" [class.btn--ink]="!plan.featured"
+             routerLink="/contact" [queryParams]="{ service: 'Websites', message: 'I would like a quote for the ' + plan.name + ' plan.' }">
+            Get a Quote
+          </a>
+          <a class="link-sweep plan-budget" routerLink="/contact" [queryParams]="{ service: 'Websites', message: 'My budget is ___ and I need the ' + plan.name + ' plan.' }">
+            Tell us your budget
+          </a>
+          <p class="plan-note">50% advance, balance on delivery</p>
+        </article>
+      }
+    </div>
+
+    <p class="pricing-note" [appReveal]>{{ pricingNote }}</p>
+    <p class="pricing-note" [appReveal]>{{ currencyNote }}</p>
+
+    <div class="rate-card" [appReveal]>
+      @for (row of rateCard; track row.name) {
+        <div class="rate-row">
+          <span>{{ row.name }}</span>
+          <span class="rate-price">@if (row.from) { Starting from } {{ currency.format(row.priceUsd) }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container faq-wrap">
+    <div [appReveal]>
+      <p class="eyebrow">07, FAQ</p>
+      <h2 class="section-title">Questions, answered straight</h2>
+    </div>
+
+    <div class="faq-list">
+      @for (faq of faqs; track faq.q; let i = $index) {
+        <div class="faq-item" [class.open]="openFaq() === i">
+          <button
+            type="button"
+            class="faq-q"
+            (click)="toggleFaq(i)"
+            [attr.aria-expanded]="openFaq() === i"
+          >
+            <span>{{ faq.q }}</span>
+            <app-icon name="chevron-down" [size]="20" />
+          </button>
+          <div class="faq-a">
+            <p>{{ faq.a }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section section--panel" id="team">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">08, The Team</p>
+      <h2 class="section-title">The people behind the work</h2>
+      <p class="section-lede">
+        Four specialists lead the studio, backed by 11 full-time employees, so design,
+        code, content, data and AI are each handled by someone whose craft it actually is.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      @for (member of team; track member.name; let i = $index) {
+        <article class="team-card" [appReveal]="i * 90">
+          <span class="team-avatar" aria-hidden="true">{{ member.initials }}</span>
+          @if (member.portfolioUrl) {
+            <h3><a [href]="member.portfolioUrl" target="_blank" rel="noopener" [attr.aria-label]="member.name + ', View portfolio'">{{ member.name }}</a></h3>
+            <p>{{ member.role }}</p>
+            <a class="team-portfolio" [href]="member.portfolioUrl" target="_blank" rel="noopener">View portfolio</a>
+          } @else {
+            <h3>{{ member.name }}</h3>
+            <p>{{ member.role }}</p>
+          }
+        </article>
+      }
+      <article class="team-card team-card--more" [appReveal]="360">
+        <span class="team-avatar" aria-hidden="true">+11</span>
+        <h3>Full-time employees</h3>
+        <p>Designers, developers &amp; support staff behind every project</p>
+      </article>
+    </div>
+
+    <div class="disciplines" [appReveal]>
+      <span class="disciplines-label">Our disciplines</span>
+      @for (d of disciplines; track d) {
+        <span class="chip">{{ d }}</span>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">09, Reviews</p>
+      <h2 class="section-title">What clients say</h2>
+    </div>
+
+    @if (content.reviews().length > 0) {
+      <div class="reviews-grid">
+        @for (review of content.reviews(); track review.name + review.text) {
+          <blockquote class="review spotlight-card" appSpotlight [appReveal]>
+            <span class="review-stars" [attr.aria-label]="review.rating + ' out of 5 stars'">
+              @for (star of [1, 2, 3, 4, 5]; track star) {
+                <app-icon name="star" [size]="16" />
+              }
+            </span>
+            <p>“{{ review.text }}”</p>
+            @if (review.service) {
+              <span class="review-service">{{ review.service }}</span>
+            }
+            <cite>{{ review.name }}</cite>
+          </blockquote>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="section cta-band">
+  <div class="container" [appReveal]>
+    <h2 class="section-title cta-title">Let's build something your customers remember</h2>
+    <p class="section-lede">
+      Send an enquiry with what you need, you'll get a clear scope, price and timeline
+      in writing, usually within a few hours.
+    </p>
+    <div class="cta-actions">
+      <a class="btn btn--accent" routerLink="/contact">
+        Start a Project
+      </a>
+      <a class="btn btn--ghost" routerLink="/contact" [queryParams]="{ message: 'My budget is ___ and I need ___.' }">
+        Tell us your budget
+      </a>
+      <a class="btn btn--ghost" [href]="'mailto:' + email">
+        <app-icon name="mail" [size]="20" />
+        Prefer email? {{ email }}
+      </a>
+    </div>
+  </div>
+</section>
