@@ -359,6 +359,44 @@ export const SERVICES: ServiceItem[] = [
     priceUsd: null,
   },
 
+  {
+    key: 'applications',
+    code: 'S.11',
+    name: 'Applications',
+    icon: 'monitor-smartphone',
+    image: 'assets/gen/service-applications-new.webp',
+    accent: 'brass',
+    short:
+      'Mobile apps, web apps and custom software for your business. Designed properly, built to be reliable, and ready to grow with you.',
+    description:
+      'When a website is not enough, you need an application. We design and build mobile apps, web apps and custom software around your business: the features you need, nothing you do not. Every app is planned properly first, designed cleanly, and built to be fast and reliable on real phones and real networks. From a simple billing app to a full SaaS product, you get software that works and a team that stays with you after launch.',
+    includes: [
+      'App planning and feature scoping before we build',
+      'Clean UI designed for your users, tested on real phones',
+      'Android and iOS builds from one codebase where it fits',
+      'Backend, database and admin panel where needed',
+      'Launch support on app stores and your own hosting',
+      'Guidance and maintenance after launch',
+    ],
+    subServices: [
+      { name: 'Mobile App Development', blurb: 'Native-quality apps for Android and iOS, designed around your customers and built to be fast and reliable.', image: 'assets/services/mobile-app-development.webp' },
+      { name: 'Web Application Development', blurb: 'Interactive web apps that work like real software in the browser: dashboards, portals and tools people log into daily.', image: 'assets/services/web-application-development.webp' },
+      { name: 'Custom Application Development', blurb: 'Software built around your exact workflow, so it fits the way your business actually runs.', image: 'assets/services/custom-application-development.webp' },
+      { name: 'SaaS Application Development', blurb: 'Subscription-based products designed for scale, from your first ten users to ten thousand.', image: 'assets/services/saas-application-development.webp' },
+      { name: 'Progressive Web Apps (PWA)', blurb: 'App-like experience without the app store: installs from the browser, works offline, updates automatically.', image: 'assets/services/progressive-web-apps.webp' },
+      { name: 'Cross-Platform Apps', blurb: 'One codebase for both Android and iOS, so you launch on both stores faster and maintain a single app.', image: 'assets/services/cross-platform-apps.webp' },
+      { name: 'MVP Development', blurb: 'The smallest useful version of your idea, built fast so you can test with real users before going further.', image: 'assets/services/mvp-development.webp' },
+      { name: 'API Development & Integration', blurb: 'Connect your app to payments, maps and messaging, or give other systems a clean way to talk to yours.', image: 'assets/services/api-development-integration.webp' },
+      { name: 'Enterprise Applications', blurb: 'Internal tools for larger teams, with proper access control, reporting and everyday reliability.', image: 'assets/services/enterprise-applications.webp' },
+      { name: 'App Maintenance & Support', blurb: 'Your app kept updated, secure and working on new phones and OS versions, month after month.', image: 'assets/services/app-maintenance-support.webp' },
+      { name: 'Billing Application', blurb: 'Billing and invoicing apps for Indian businesses, with GST-ready invoices and payment tracking.', image: 'assets/services/billing-application.webp' },
+    ],
+    whoFor:
+      'Businesses that need more than a website: shops and restaurants wanting their own ordering app, startups testing an idea, and companies replacing paperwork with proper software.',
+    priceNote: 'Priced on request',
+    priceUsd: null,
+  },
+
 ];
 
 export type BadgeKind = 'live' | 'sample' | 'product';
@@ -756,37 +794,6 @@ export interface Review {
   rating: number;
 }
 
-// Approved client reviews, shown on the home and about pages. The admin
-// panel can later approve Supabase reviews, which override this list.
-export const REVIEWS: Review[] = [
-  {
-    name: 'Mohd Ibrah',
-    service: 'Business Website',
-    text: 'My business finally has a website that works as hard as I do. Customers find us on their phones and message us straight from the site. Enquiries have gone up since launch, and the team handled everything.',
-    rating: 5,
-  },
-  {
-    name: 'Mariyam Saffa',
-    service: 'Logo & Brand Identity',
-    text: 'I wanted a logo that felt like my brand, not a generic template, and that is exactly what I got. Colours, fonts and print-ready files all arrived organised. It finally looks as professional as the work behind it.',
-    rating: 5,
-  },
-  {
-    name: 'Mazen Gassar',
-    service: 'Posters & Social Media Designs',
-    text: 'The posters and social designs changed how my page looks completely. Every post follows the same style, customers recognise us instantly, and festive creatives always arrive before the occasion.',
-    rating: 5,
-  },
-  {
-    name: 'Cloe Corn',
-    service: 'Invitation Website',
-    text: 'Our invitation website was the loveliest surprise of the celebration. Guests opened one link and found everything, our story, the countdown, the venue map and a quick RSVP.',
-    rating: 5,
-  },
-  {
-    name: 'Sajid',
-    service: 'Invitation Website',
-    text: 'I worried a digital invitation would feel less special than a printed card, but this felt even better. The design matched our card, and guests confirmed with one tap instead of phone calls.',
-    rating: 5,
-  },
-];
+// Client reviews now come from Supabase (approved only). This stays empty:
+// the website shows its "Leave a review" form until the first approval.
+export const REVIEWS: Review[] = [];

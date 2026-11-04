@@ -105,24 +105,16 @@
 }
 
 .footer-handle { font-size: 14px; color: var(--muted); }
-
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.brand-logo {
   width: 42px;
   height: 42px;
   flex: none;
   border-radius: 11px;
-  background: var(--grad-gold);
-  color: #1E1405;
-  font-family: var(--font-brand);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.04em;
+  object-fit: cover;
   box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.45);
   margin-bottom: 14px;
 }
+
 
 .footer-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; }
 .footer-tag {
@@ -139,16 +131,52 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
 
-  h3 {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
+/* Mobile accordion header: tap to expand a column. On desktop the
+   header is inert and every column stays fully visible. */
+.footer-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  min-height: 44px;
+
+  @media (min-width: 768px) {
+    cursor: default;
+    pointer-events: none;
+    min-height: 0;
   }
+}
+
+.footer-col-title {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-col-chevron {
+  color: var(--muted);
+  transition: transform 0.25s var(--ease);
+  flex: none;
+
+  @media (min-width: 768px) { display: none; }
+}
+
+.footer-col--open .footer-col-chevron { transform: rotate(180deg); }
+
+.footer-col-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   a {
     display: inline-flex;
@@ -162,6 +190,35 @@
       &:hover { color: var(--accent-ink); }
     }
   }
+
+  @media (max-width: 767px) {
+    display: none;
+
+    .footer-col--open & { display: flex; }
+  }
+}
+
+/* "Show more" toggle for the long services list. */
+.footer-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent-ink);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  align-self: flex-start;
+
+  app-icon { transition: transform 0.25s var(--ease); }
+  &[aria-expanded="true"] app-icon { transform: rotate(180deg); }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { opacity: 0.8; }
+  }
 }
 
 .footer-base {
@@ -174,4 +231,3 @@
   font-size: 13.5px;
   color: var(--muted);
 }
-

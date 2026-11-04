@@ -73,10 +73,23 @@ const emptyForm = (): PortfolioForm => ({
                 </select>
               </div>
               <div class="field span-2">
-                <label for="c-image">Image URL (upload to the portfolio-images bucket in Supabase Storage, then paste the URL)</label>
-                <input id="c-image" type="url" placeholder="https://…/portfolio-images/project.jpg"
-                  [ngModel]="form().image_url"
-                  (ngModelChange)="patch('image_url', $event)" name="image_url">
+                <label for="c-image">Project image</label>
+                <div class="image-row">
+                  <input id="c-image" type="url" required placeholder="https://…/portfolio-images/project.jpg"
+                    [ngModel]="form().image_url"
+                    (ngModelChange)="patch('image_url', $event)" name="image_url">
+                  <label class="btn btn--ink btn--small file-btn">
+                    {{ uploading() ? 'Uploading…' : 'Upload image' }}
+                    <input type="file" accept="image/*" hidden
+                      (change)="onImageFile($event)" [disabled]="uploading()">
+                  </label>
+                </div>
+                @if (uploadError()) {
+                  <p class="field-error">{{ uploadError() }}</p>
+                }
+                @if (form().image_url) {
+                  <img class="image-preview" [src]="form().image_url" alt="Project image preview">
+                }
               </div>
               <div class="field">
                 <label for="c-sort">Sort order</label>
@@ -86,7 +99,7 @@ const emptyForm = (): PortfolioForm => ({
               </div>
               <div class="field span-2">
                 <label for="c-live">Live site URL</label>
-                <input id="c-live" type="url" placeholder="https://…"
+                <input id="c-live" type="url" required placeholder="https://…"
                   [ngModel]="form().live_url"
                   (ngModelChange)="patch('live_url', $event)" name="live_url">
               </div>
@@ -98,7 +111,7 @@ const emptyForm = (): PortfolioForm => ({
               </div>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn--accent" [disabled]="!form().title.trim()">
+              <button type="submit" class="btn btn--accent" [disabled]="!form().title.trim() || !form().image_url.trim() || !form().live_url.trim()">
                 {{ form().id ? 'Save changes' : 'Add item' }}
               </button>
               @if (form().id) {
@@ -124,6 +137,8 @@ const emptyForm = (): PortfolioForm => ({
                     <td><span class="status-pill">{{ row.is_published ? 'Published' : 'Hidden' }}</span></td>
                     <td>
                       <div class="row-actions">
+                        <button type="button" class="btn btn--ghost btn--small" (click)="moveItem(row, -1)" title="Move up">↑</button>
+                        <button type="button" class="btn btn--ghost btn--small" (click)="moveItem(row, 1)" title="Move down">↓</button>
                         <button type="button" class="btn btn--ghost btn--small" (click)="editItem(row)">Edit</button>
                         <button type="button" class="btn btn--ghost btn--small" (click)="togglePublish(row)">
                           {{ row.is_published ? 'Unpublish' : 'Publish' }}
@@ -206,6 +221,11 @@ const emptyForm = (): PortfolioForm => ({
       .checkbox-inline { display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 500; }
       .checkbox-inline input { width: 18px; height: 18px; accent-color: var(--accent); }
       .saved-note { color: var(--accent); font-weight: 600; font-size: 14px; }
+      .image-row { display: flex; gap: 10px; align-items: center; }
+      .image-row input[type="url"] { flex: 1; }
+      .file-btn { cursor: pointer; white-space: nowrap; }
+      .image-preview { margin-top: 10px; max-width: 220px; border-radius: 10px; border: 1px solid var(--line); }
+      .field-error { color: #c0392b; font-size: 13px; margin-top: 6px; }
     `,
   ],
 })
@@ -216,6 +236,8 @@ export class ContentAdmin implements OnInit {
   readonly servicesContent = signal<ServiceContentRow[]>([]);
   readonly form = signal<PortfolioForm>(emptyForm());
   readonly savedKey = signal<string | null>(null);
+  readonly uploading = signal(false);
+  readonly uploadError = signal<string | null>(null);
 
   async ngOnInit(): Promise<void> {
     await this.reload();
@@ -232,6 +254,24 @@ export class ContentAdmin implements OnInit {
 
   patch<K extends keyof PortfolioForm>(key: K, value: PortfolioForm[K]): void {
     this.form.update((f) => ({ ...f, [key]: value }));
+  }
+
+  /** Uploads the chosen file to the portfolio-images bucket and fills the URL field. */
+  async onImageFile(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    if (!file) return;
+    this.uploading.set(true);
+    this.uploadError.set(null);
+    try {
+      const url = await this.admin.uploadPortfolioImage(file);
+      this.patch('image_url', url);
+    } catch (e) {
+      this.uploadError.set(e instanceof Error ? e.message : 'Upload failed, try again.');
+    } finally {
+      this.uploading.set(false);
+    }
   }
 
   editItem(row: PortfolioRow): void {
@@ -270,6 +310,18 @@ export class ContentAdmin implements OnInit {
 
   async togglePublish(row: PortfolioRow): Promise<void> {
     await this.admin.savePortfolio({ id: row.id, is_published: !row.is_published });
+    await this.reload();
+  }
+
+  async moveItem(row: PortfolioRow, dir: -1 | 1): Promise<void> {
+    const sorted = [...this.items()].sort((a, b) => a.sort - b.sort);
+    const i = sorted.findIndex((r) => r.id === row.id);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= sorted.length) return;
+    const a = sorted[i];
+    const b = sorted[j];
+    await this.admin.savePortfolio({ id: a.id, sort: b.sort });
+    await this.admin.savePortfolio({ id: b.id, sort: a.sort });
     await this.reload();
   }
 

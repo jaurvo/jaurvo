@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit, effect, inject, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import {
   BENEFITS,
   COMMITMENTS,
@@ -11,7 +12,6 @@ import {
   PLANS,
   PRICING_NOTE,
   PROCESS_STEPS,
-  RATE_CARD,
   SERVICES,
   TEAM,
 } from '../../core/data';
@@ -33,6 +33,7 @@ import { SpotlightDirective } from '../../shared/spotlight.directive';
   standalone: true,
   imports: [
     RouterLink,
+    FormsModule,
     Icon,
     RevealDirective,
     CounterDirective,
@@ -76,16 +77,102 @@ export class Home implements OnInit, OnDestroy {
   readonly plans = PLANS;
   readonly pricingNote = PRICING_NOTE;
   readonly currencyNote = CURRENCY_NOTE;
-  readonly rateCard = RATE_CARD;
   readonly benefits = BENEFITS;
   readonly comparison = COMPARISON;
   readonly commitments = COMMITMENTS;
   readonly team = TEAM;
+  /**
+   * Full-site CMS (Fix 15): when the admin publishes team members or
+   * pricing plans, those replace the static lists. Static data stays the
+   * fallback while the tables are empty, so the website never breaks.
+   */
+  readonly liveTeam = computed(() => {
+    const rows = this.content.teamMembers();
+    if (rows.length > 0) {
+      return rows.map((m) => ({
+        name: m.name,
+        role: m.role || '',
+        initials: m.name
+          .split(/\s+/)
+          .map((w) => w[0])
+          .join('')
+          .slice(0, 2)
+          .toUpperCase(),
+        photoUrl: m.photo_url as string | null,
+        portfolioUrl: null as string | null,
+      }));
+    }
+    return TEAM.map((m) => ({
+      name: m.name,
+      role: m.role,
+      initials: m.initials,
+      photoUrl: null as string | null,
+      portfolioUrl: m.portfolioUrl ?? null,
+    }));
+  });
+
+  readonly livePlans = computed(() => {
+    const rows = this.content.pricingPlans();
+    if (rows.length > 0) {
+      return rows.map((p) => ({
+        name: p.name,
+        tagline: '',
+        priceUsd: p.price_usd,
+        features: [...p.features],
+        featured: p.is_popular,
+      }));
+    }
+    return PLANS.map((p) => ({
+      name: p.name,
+      tagline: p.tagline ?? '',
+      priceUsd: p.priceUsd,
+      features: [...p.features],
+      featured: !!p.featured,
+    }));
+  });
+
+  /** One site setting with a fallback when it was never saved. */
+  setting(key: string, fallback: string): string {
+    return this.content.setting(key, fallback);
+  }
+
+  /** Numeric site setting (for the animated counters), with fallback. */
+  statNum(key: string, fallback: number): number {
+    const raw = this.content.setting(key, '').trim();
+    const n = Number(raw);
+    return raw === '' || Number.isNaN(n) ? fallback : n;
+  }
   readonly disciplines = DISCIPLINES;
   readonly steps = PROCESS_STEPS;
   readonly email = EMAIL;
 
-  /** Total sub-services across all six categories (counted from data.ts). */
+  /** Leave-a-review form state (homepage reviews section). */
+  readonly reviewForm = { name: '', rating: 5, service: '', text: '' };
+  readonly reviewSending = signal(false);
+  readonly reviewSent = signal(false);
+  readonly reviewError = signal<string | null>(null);
+
+  async submitReview(): Promise<void> {
+    const name = this.reviewForm.name.trim();
+    const text = this.reviewForm.text.trim();
+    if (!name || !text) return;
+    this.reviewSending.set(true);
+    this.reviewError.set(null);
+    const ok = await this.content.submitReview({
+      name,
+      rating: this.reviewForm.rating,
+      text,
+      service: this.reviewForm.service.trim() || undefined,
+    });
+    this.reviewSending.set(false);
+    if (ok) {
+      this.reviewSent.set(true);
+    } else {
+      this.reviewError.set('Could not send your review, please try again.');
+    }
+  }
+
+  /** Total sub-services across all categories (counted from data.ts). */
   readonly totalSubServices = SERVICES.reduce((sum, s) => sum + s.subServices.length, 0);
 
   readonly serviceNames = [

@@ -85,3 +85,34 @@
 }
 
 .mini-select { min-height: 38px; padding: 6px 10px; font-size: 14px; }
+
+/* ---------- mobile fixes ---------- */
+
+/* Wide tables scroll sideways inside their card instead of breaking the page. */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+  min-width: 640px;
+}
+
+.admin-table td {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .admin-page {
+    padding-block: 24px 48px;
+  }
+
+  .admin-card {
+    margin-bottom: 20px;
+  }
+
+  /* Table action buttons get proper touch size on phones. */
+  .row-actions .btn--small {
+    min-height: 44px;
+  }
+}

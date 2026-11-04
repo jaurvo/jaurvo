@@ -11,16 +11,16 @@ export interface CurrencyDef {
   rate: number;
 }
 
-// Rates: approx. mid-market, 2026-10-29. Display only, see the pricing
+// Rates: approx. mid-market, 2026-11-03. Display only, see the pricing
 // note shown under the pricing grid. Never fetched live at runtime, so
 // prices never shift or break while the page is open.
 export const CURRENCIES: CurrencyDef[] = [
   { code: 'USD', label: 'USD, US Dollar', prefix: '$', rate: 1 },
-  { code: 'INR', label: 'INR, Indian Rupee', prefix: '₹', rate: 95.2 },
+  { code: 'INR', label: 'INR, Indian Rupee', prefix: '₹', rate: 95.0 },
   { code: 'SAR', label: 'SAR, Saudi Riyal', prefix: 'SAR ', rate: 3.75 },
   { code: 'AED', label: 'AED, UAE Dirham', prefix: 'AED ', rate: 3.67 },
-  { code: 'EUR', label: 'EUR, Euro', prefix: '€', rate: 0.89 },
-  { code: 'IDR', label: 'IDR, Indonesian Rupiah', prefix: 'Rp ', rate: 16700 },
+  { code: 'EUR', label: 'EUR, Euro', prefix: '€', rate: 0.90 },
+  { code: 'IDR', label: 'IDR, Indonesian Rupiah', prefix: 'Rp ', rate: 18110 },
 ];
 
 const STORAGE_KEY = 'jaurvo-currency-v2';

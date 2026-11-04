@@ -30,26 +30,19 @@
   min-height: 48px;
 }
 
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.brand-logo {
   width: 42px;
   height: 42px;
   flex: none;
   border-radius: 11px;
-  background: var(--grad-gold);
-  color: #1E1405;
-  font-family: var(--font-brand);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.04em;
+  object-fit: cover;
   box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.45);
   transition: transform 0.3s var(--ease-expo);
 }
 
+
 @media (hover: hover) and (pointer: fine) {
-  .brand:hover .brand-mark { transform: translateY(-2px); }
+  .brand:hover .brand-logo { transform: translateY(-2px); }
 }
 
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { EMAIL, INSTAGRAM_URL, SOCIAL_HANDLE, YOUTUBE_URL } from '../core/data';
 import { Icon } from './icon';
@@ -27,6 +27,20 @@ export class Footer implements AfterViewInit, OnDestroy {
     'assets/gen/footer-5.webp',
     'assets/gen/footer-6.webp'
   ];
+
+  /** Footer compact: reveal the full services list on demand. */
+  readonly showAllServices = signal(false);
+  /** Mobile accordion: which footer column is open (desktop always shows all). */
+  readonly openCol = signal<string | null>(null);
+
+  toggleCol(col: string): void {
+    this.openCol.set(this.openCol() === col ? null : col);
+  }
+  scrollToTop(event: Event): void {
+  event.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 
   ngAfterViewInit(): void {
     const footerEl = this.host.nativeElement.querySelector('.site-footer');

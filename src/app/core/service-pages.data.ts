@@ -2521,6 +2521,392 @@ export const SERVICE_PAGES: ServicePage[] = [
     ],
     priceHint: STANDARD_PRICE,
   },
+  // ------------------------------------------------ S.11 APPLICATIONS
+  {
+    slug: 'mobile-app-development',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'Mobile App Development',
+    seoTitle: 'Mobile App Development | Jaurvo',
+    seoDescription:
+      'Custom mobile apps for Android and iOS, designed around your customers and built to be fast and reliable. Fixed quote, delivered on time.',
+    h1: 'An app your customers will actually keep.',
+    intro:
+      'Most business apps get deleted within a week. Ours are designed to survive that test: fast to open, obvious to use, and genuinely useful enough to earn home-screen space. We build for Android and iOS, planned around what your customers actually do, not a feature list. Every screen is designed before development starts, tested on real phones, and built to work on the networks your customers really have. From ordering apps to booking apps to full customer portals, you get an app that works and a team that stays after launch.',
+    points: [
+      'Android and iOS apps, designed for each platform',
+      'Screens designed and approved before development',
+      'Fast loading, built for real-world networks',
+      'App store listing and launch handled',
+      'Updates and support after launch',
+    ],
+    faqs: [
+      {
+        q: 'Should I build for Android, iOS, or both?',
+        a: 'It depends on your customers. In India, Android usually comes first. We often build both from one codebase, which costs far less than two separate apps. We will advise honestly based on who you serve.',
+      },
+      {
+        q: 'How long does an app take to build?',
+        a: 'A focused business app typically takes six to twelve weeks from approved design to launch. Bigger products take longer. You get a real timeline in writing before we start, not a guess.',
+      },
+      {
+        q: 'What does it cost?',
+        a: 'Every app is different, which is why we quote fixed prices in writing after understanding your requirements. Tell us what you need and you will have a clear number, with exactly what is included.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'web-application-development',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'Web Application Development',
+    seoTitle: 'Web Application Development | Jaurvo',
+    seoDescription:
+      'Interactive web apps that work like real software in the browser. Dashboards, portals and tools your team uses every day.',
+    h1: 'Software that lives in the browser.',
+    intro:
+      'Some jobs need more than a website. A web application is software people log into: dashboards, booking systems, customer portals, internal tools. We build these as proper applications, not dressed-up pages, with real logins, real data and workflows that match how your team works. Everything runs in the browser, so there is nothing to install and updates reach everyone instantly. Designed cleanly, built reliably, and ready to grow as your needs do.',
+    points: [
+      'Proper applications, not dressed-up websites',
+      'User logins, roles and permissions',
+      'Workflows matched to how your team works',
+      'Nothing to install, works in any browser',
+      'Built to grow with your business',
+    ],
+    faqs: [
+      {
+        q: 'How is a web app different from a website?',
+        a: 'A website presents information. A web app does work: logins, data, bookings, reports. If your visitors need to do things rather than just read, you probably need an app.',
+      },
+      {
+        q: 'Will it work on phones too?',
+        a: 'Yes. Every web app we build is fully usable on phones, because that is where most people will open it. The layout adapts; nothing important gets lost on small screens.',
+      },
+      {
+        q: 'Who owns the code and data?',
+        a: 'You do. The application, the code and the database are yours. We hand over everything with documentation, so you are never locked in.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'custom-application-development',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'Custom Application Development',
+    seoTitle: 'Custom Application Development | Jaurvo',
+    seoDescription:
+      'Software built around your exact workflow. Custom applications that fit the way your business actually runs.',
+    h1: 'Software that fits your business, not the other way round.',
+    intro:
+      'Off-the-shelf software makes you change how you work. Custom software changes to fit you. We build applications around your exact process: the steps your team follows, the data you track, the reports you need. The result feels natural from day one because it was designed from your workflow, not adapted from someone else\u2019s. It costs more than a subscription up front, but you stop paying monthly forever and you own something built precisely for you.',
+    points: [
+      'Designed from your actual workflow',
+      'Only the features you need, nothing bloated',
+      'Your data, your rules, your reports',
+      'No monthly subscription, you own it',
+      'Grows and changes with your business',
+    ],
+    faqs: [
+      {
+        q: 'Is custom software worth it for a small business?',
+        a: 'When the off-the-shelf options fight your process, yes. If you find yourself maintaining spreadsheets alongside paid software, a custom app usually pays for itself within a year or two.',
+      },
+      {
+        q: 'How do you learn our workflow?',
+        a: 'We watch and ask. A proper discovery phase maps your process step by step before any design begins. You will be surprised how much clarity this brings even before we build.',
+      },
+      {
+        q: 'What if our process changes later?',
+        a: 'Then the software changes with it. That is the point of custom. We build in a way that makes future changes straightforward, and quote them fairly.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'saas-application-development',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'SaaS Application Development',
+    seoTitle: 'SaaS Application Development | Jaurvo',
+    seoDescription:
+      'Subscription-based software products, built to scale. From your first ten users to ten thousand, designed and engineered properly.',
+    h1: 'Your software product, built to scale.',
+    intro:
+      'A SaaS product is a different animal from internal software. It needs signups that convert, onboarding that teaches, billing that just works, and an architecture that survives growth. We build SaaS applications with all of this in mind from day one: multi-user accounts, subscription billing, usage tiers, and a codebase that does not collapse at a thousand users. You bring the idea and the market knowledge; we bring the engineering. Launched properly, supported honestly.',
+    points: [
+      'Multi-user accounts and team workspaces',
+      'Subscription billing built in',
+      'Onboarding designed to convert trials',
+      'Architecture that scales with users',
+      'Admin tools to run your product',
+    ],
+    faqs: [
+      {
+        q: 'I have an idea but no technical background. Can we still work together?',
+        a: 'Yes, most SaaS founders are not developers. We translate your idea into a proper plan, advise on what to build first, and keep you involved at every stage in plain language.',
+      },
+      {
+        q: 'Should I start with an MVP?',
+        a: 'Almost always yes. Build the smallest version real users will pay for, learn from them, then grow. We will tell you honestly what belongs in version one and what can wait.',
+      },
+      {
+        q: 'How do subscriptions and payments work?',
+        a: 'We integrate proper billing with plans, trials and invoices. Indian and international payment methods are both supported, and you get clear reports on who pays for what.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'progressive-web-apps',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'Progressive Web Apps (PWA)',
+    seoTitle: 'Progressive Web App Development | Jaurvo',
+    seoDescription:
+      'App-like experience without the app store. Installable, offline-capable web apps that update automatically.',
+    h1: 'An app, without the app store.',
+    intro:
+      'Not every app needs the app store. A progressive web app installs straight from the browser, works offline, sends notifications and updates automatically, all without store approvals or downloads. For many businesses this is the smarter route: one build that works everywhere, no store fees, no waiting for review. We build PWAs that genuinely feel like apps, because the technology only works when the experience is right. Fast, reliable and installable in seconds.',
+    points: [
+      'Installs from the browser, no store needed',
+      'Works offline and on slow networks',
+      'Push notifications built in',
+      'Updates automatically, no downloads',
+      'One build for every device',
+    ],
+    faqs: [
+      {
+        q: 'When is a PWA better than a native app?',
+        a: 'When your users will not bother downloading from a store, when you need to launch fast, or when the budget fits one build, not two. For many business apps, a PWA does everything needed.',
+      },
+      {
+        q: 'Can it really work offline?',
+        a: 'Yes. Properly built PWAs cache what matters and sync when the connection returns. We design the offline experience deliberately, not as an afterthought.',
+      },
+      {
+        q: 'Will it feel like a real app?',
+        a: 'On modern phones, very much so: home-screen icon, full-screen launch, smooth navigation. Most users will not know or care how it was built.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'cross-platform-apps',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'Cross-Platform Apps',
+    seoTitle: 'Cross-Platform App Development | Jaurvo',
+    seoDescription:
+      'One codebase for Android and iOS. Launch on both stores faster and maintain a single app, not two.',
+    h1: 'Both stores. One codebase. Half the headache.',
+    intro:
+      'Building separately for Android and iOS means two codebases, two teams, twice the maintenance. Cross-platform development builds both from one codebase, so you launch on both stores faster and every update ships everywhere at once. We use Flutter, which produces genuinely native-feeling apps, not compromises. The result looks and feels right on each platform because we respect each platform\u2019s conventions while sharing the core. Smart economics, honest quality.',
+    points: [
+      'One codebase for Android and iOS',
+      'Launch on both stores together',
+      'Updates ship everywhere at once',
+      'Native feel on each platform',
+      'Single app to maintain, not two',
+    ],
+    faqs: [
+      {
+        q: 'Is cross-platform as good as native?',
+        a: 'For most business apps, yes. Modern frameworks produce apps users cannot distinguish from native. Only the most demanding apps, heavy gaming or deep hardware use, truly need separate native builds.',
+      },
+      {
+        q: 'Why Flutter?',
+        a: 'It is mature, well-supported and produces consistent results on both platforms from one codebase. We recommend it because it has proven itself in real products, not because it is fashionable.',
+      },
+      {
+        q: 'What if I later need a fully native app?',
+        a: 'The design, the backend and the business logic all carry over. Only the interface layer would be rebuilt, so the investment is protected.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'mvp-development',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'MVP Development',
+    seoTitle: 'MVP Development for Startups | Jaurvo',
+    seoDescription:
+      'The smallest useful version of your idea, built fast. Test with real users before spending on the full product.',
+    h1: 'Launch the smallest thing that works.',
+    intro:
+      'Most startup ideas die from building too much before learning anything. An MVP, a minimum viable product, is the smallest version real users will actually use. We help you find that version: what is essential, what can wait, what to cut entirely. Then we build it fast and clean, so you can put it in front of users within weeks, not months. What you learn from real usage is worth more than a year of planning. Build small, learn fast, then decide.',
+    points: [
+      'Ruthless scoping: essentials only',
+      'Built fast, typically in weeks',
+      'Real users, real feedback, real data',
+      'Clean foundation for version two',
+      'Honest advice on what to cut',
+    ],
+    faqs: [
+      {
+        q: 'How do you decide what goes in the MVP?',
+        a: 'We map your idea to the one core action users must complete, then include only what that action needs. Everything else goes on the version-two list. This conversation alone is worth having.',
+      },
+      {
+        q: 'Will the MVP look unfinished?',
+        a: 'No. Small does not mean rough. The MVP does few things, but does them properly, with clean design users trust. Polish on the essentials, nothing on the extras.',
+      },
+      {
+        q: 'What happens after the MVP?',
+        a: 'You learn from real users, then we build version two on the same foundation: keep what works, fix what does not, add what users actually asked for.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'api-development-integration',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'API Development & Integration',
+    seoTitle: 'API Development & Integration | Jaurvo',
+    seoDescription:
+      'Connect your app to payments, maps, messaging and more. Clean APIs and integrations that just work.',
+    h1: 'Connect everything to everything.',
+    intro:
+      'Modern software is connected software. Your app needs payments, maps, messages, maybe your accounting system or your supplier\u2019s stock feed. We build the connections: integrating third-party services into your app, and building clean APIs so other systems can talk to yours. Done properly, integrations are invisible. Done badly, they are the thing that breaks at 2am. We do them properly, with error handling, monitoring and documentation, so the plumbing never becomes the problem.',
+    points: [
+      'Payment gateway integration (UPI, cards, international)',
+      'Maps, messaging and notification services',
+      'Clean, documented APIs for your systems',
+      'Error handling and monitoring built in',
+      'Secure by design, not by luck',
+    ],
+    faqs: [
+      {
+        q: 'Which payment gateway should we use?',
+        a: 'For Indian customers, Razorpay is the usual answer. For international, Stripe. We have integrated both many times and will recommend based on your customers and your pricing.',
+      },
+      {
+        q: 'Can you connect our app to our existing software?',
+        a: 'Usually yes. If your software has an API or export options, we can connect it. We will assess what is possible honestly before quoting.',
+      },
+      {
+        q: 'What is an API, in plain language?',
+        a: 'A defined way for software to talk to software. When your app needs live data from somewhere else, or another system needs your data, an API is the bridge. We build the bridge.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'enterprise-applications',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'Enterprise Applications',
+    seoTitle: 'Enterprise Application Development | Jaurvo',
+    seoDescription:
+      'Internal tools for larger teams. Business applications with proper access control, reporting and reliability.',
+    h1: 'Serious software for serious teams.',
+    intro:
+      'When a team grows past spreadsheets, it needs proper tools. We build enterprise applications for larger organisations: internal portals, workflow systems, reporting tools, the software that runs the business behind the scenes. These are built differently from consumer apps: access control by role, audit trails, reliable data handling, and interfaces designed for people who use them eight hours a day. Boring in the best way: it just works, every day, for everyone.',
+    points: [
+      'Role-based access and permissions',
+      'Workflows matched to your processes',
+      'Reports and audit trails built in',
+      'Designed for daily, heavy use',
+      'Reliable data handling and backups',
+    ],
+    faqs: [
+      {
+        q: 'How is this different from off-the-shelf enterprise software?',
+        a: 'Off-the-shelf makes you adapt your processes to its boxes, plus per-seat fees forever. Custom fits your processes exactly and you own it. For distinctive workflows, custom usually wins within a couple of years.',
+      },
+      {
+        q: 'Can it integrate with our existing systems?',
+        a: 'Yes, that is usually central to the project. ERP, accounting, HR systems: we connect to what you have rather than replacing everything at once.',
+      },
+      {
+        q: 'What about security and data?',
+        a: 'Built in from the start: proper authentication, role-based access, encrypted connections and regular backups. Your IT team gets full documentation.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'app-maintenance-support',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'App Maintenance & Support',
+    seoTitle: 'App Maintenance & Support | Jaurvo',
+    seoDescription:
+      'Your app kept updated, secure and working. Maintenance that keeps your software reliable month after month.',
+    h1: 'Your app, looked after.',
+    intro:
+      'Launch day is the beginning, not the end. Phones update, operating systems change, libraries age, and small issues surface with real users. Our maintenance keeps your app healthy: updates for new OS versions, security patches, bug fixes, and small improvements shipped regularly. You get a team that knows your app watching over it, instead of scrambling when something breaks. Software rots without care; we make sure yours does not.',
+    points: [
+      'Updates for new phones and OS versions',
+      'Security patches applied promptly',
+      'Bug fixes with real turnaround times',
+      'Small improvements shipped regularly',
+      'Monitoring so issues surface early',
+    ],
+    faqs: [
+      {
+        q: 'What happens if we skip maintenance?',
+        a: 'Slowly, then suddenly. The app works until an OS update breaks something, a library has a security hole, or small bugs pile up. Maintenance is cheaper than rescue.',
+      },
+      {
+        q: 'Is this a monthly plan?',
+        a: 'Yes, monthly, no long lock-in. You get a set amount of attention each month plus emergency coverage. Pause or cancel when it stops making sense.',
+      },
+      {
+        q: 'We built our app elsewhere. Can you maintain it?',
+        a: 'Usually yes. We start with a proper review of the code and hand over a health report, then take over maintenance with full knowledge of what we inherited.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
+  {
+    slug: 'billing-application',
+    categoryKey: 'applications',
+    categoryCode: 'S.11',
+    categoryName: 'Applications',
+    name: 'Billing Application',
+    seoTitle: 'Billing Application Development | Jaurvo',
+    seoDescription:
+      'Billing and invoicing apps for Indian businesses. GST-ready invoices, payment tracking and simple reports.',
+    h1: 'Billing that fits in your pocket.',
+    intro:
+      'Billing should take seconds, not paperwork. We build billing applications for shops, restaurants, distributors and service businesses: create GST-ready invoices in moments, track who paid and who did not, and see your numbers clearly. Built mobile-first because billing happens on the shop floor, not at a desk. Your items, your taxes, your format, working the way you already work, only faster and without the errors that paper brings.',
+    points: [
+      'GST-ready invoices in seconds',
+      'Payment tracking and reminders',
+      'Your items, taxes and format',
+      'Mobile-first, built for the shop floor',
+      'Simple sales reports',
+    ],
+    faqs: [
+      {
+        q: 'Does it handle GST properly?',
+        a: 'Yes. GST fields, rates and invoice formats as per Indian requirements, set up for your registration type. We have done this for multiple businesses.',
+      },
+      {
+        q: 'Can my staff use it too?',
+        a: 'Yes. Simple logins with appropriate access: staff can bill, you see everything. It is designed for non-technical users.',
+      },
+      {
+        q: 'What about my existing customer and item data?',
+        a: 'We import it to get you started: customers, items, prices. You begin with your business already in the system, not an empty app.',
+      },
+    ],
+    priceHint: STANDARD_PRICE,
+  },
 ];
 
 export function servicePageBySlug(slug: string): ServicePage | undefined {

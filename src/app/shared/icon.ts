@@ -28,10 +28,13 @@ import {
   Share2,
   Star,
   Sun,
+  Trash2,
   Type,
   UtensilsCrossed,
   Wallet,
   X,
+  Users,
+  Tag,
 } from 'lucide';
 
 type IconNode = [string, Record<string, string>][];
@@ -84,11 +87,14 @@ const REGISTRY: Record<string, IconNode> = {
   Share2,
   Star,
   Sun,
+  Trash2,
   Type,
   UtensilsCrossed,
   Wallet,
   X,
   Youtube,
+  Users,
+  Tag,
 } as Record<string, IconNode>;
 
 /** Renders a Lucide icon by kebab-case name, e.g. <app-icon name="arrow-right" />. */

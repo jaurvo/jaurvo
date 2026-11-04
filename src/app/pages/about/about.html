@@ -3,10 +3,8 @@
     <div [appReveal]>
       <img
         class="about-img"
-        src="assets/gen/about-studio-new.webp"
-        srcset="assets/gen/about-studio-new-sm.webp 640w, assets/gen/about-studio-new.webp 1600w"
-        sizes="(max-width: 640px) 92vw, 520px"
-        alt="The Jaurvo team workspace in Hyderabad"
+        src="assets/office/office-team.webp"
+        alt="The Jaurvo team at work in the studio"
         width="1600"
         height="1067"
         loading="lazy"
@@ -86,20 +84,20 @@ across the world.
     <h3 class="values-title" [appReveal]>Our Core Values</h3>
     <div class="values-grid">
       <article class="value-card" [appReveal]>
-        <h4>Safety</h4>
-        <p>Our culture and obligation to every team member.</p>
+        <h4>Price in writing, before we start</h4>
+        <p>You get a fixed quote on paper before we touch a pixel. No hidden costs, no mid-project surprises, ever.</p>
       </article>
       <article class="value-card" [appReveal]="80">
-        <h4>Quality</h4>
-        <p>A promise we undertake with each endeavor.</p>
+        <h4>Your business, our responsibility</h4>
+        <p>We treat every client's work like our own shop's signboard. If it does not bring you customers, we did not do our job.</p>
       </article>
       <article class="value-card" [appReveal]="160">
-        <h4>Teamwork</h4>
-        <p>Excellence through collaboration and trust.</p>
+        <h4>Say it plainly</h4>
+        <p>No jargon, no fake promises, no fine print. We tell you what we can do, what it costs, and exactly when it will be done.</p>
       </article>
       <article class="value-card" [appReveal]="240">
-        <h4>Innovation</h4>
-        <p>Embracing the latest technologies.</p>
+        <h4>Fast, and we stand behind it</h4>
+        <p>Most websites go live in days, not months. And when something needs fixing after launch, one message is all it takes.</p>
       </article>
     </div>
   </div>
@@ -155,7 +153,7 @@ across the world.
                 <app-icon name="star" [size]="16" />
               }
             </span>
-            <p>“{{ review.text }}”</p>
+            <p>"{{ review.text }}"</p>
             @if (review.service) {
               <span class="review-service">{{ review.service }}</span>
             }
@@ -192,6 +190,45 @@ across the world.
         See services &amp; prices
         <app-icon name="arrow-right" [size]="16" />
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- OUR OFFICES -->
+<section class="section">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">06, Our Offices</p>
+      <h2 class="section-title">Two cities, <em>one studio.</em></h2>
+      <p class="section-lede">
+        We work from Riyadh and Hyderabad, so Gulf clients get a team in their
+        timezone and Indian clients get a team next door.
+      </p>
+    </div>
+
+    <div class="offices-grid">
+      <article class="office-card" [appReveal]>
+        <img
+          class="office-img"
+          src="assets/office/office-exterior.webp"
+          alt="Jaurvo studio in Riyadh"
+          loading="lazy"
+          decoding="async"
+        >
+        <h3>Riyadh, Saudi Arabia</h3>
+        <p>Our Gulf office. We serve clients across Saudi Arabia and the UAE in their timezone, in Arabic and English.</p>
+      </article>
+      <article class="office-card" [appReveal]="120">
+        <img
+          class="office-img"
+          src="assets/office/office-desks.webp"
+          alt="Jaurvo workstations in Hyderabad"
+          loading="lazy"
+          decoding="async"
+        >
+        <h3>Hitech City, Hyderabad, India</h3>
+        <p>Our headquarters. Design, development, content, data and AI all happen here, under one roof.</p>
+      </article>
     </div>
   </div>
 </section>

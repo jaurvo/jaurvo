@@ -26,7 +26,7 @@
 
   <div class="container footer-grid">
     <div class="footer-brand">
-      <span class="brand-mark">JV</span>
+       <img class="brand-logo" src="assets/jv-gold-box.png" alt="Jaurvo" width="42" height="42" />
       <p class="footer-name">Jaurvo</p>
       <p class="footer-blurb">
         Websites, invitation websites, logos, posters and social media designs
@@ -34,58 +34,86 @@
       </p>
     </div>
 
-    <nav class="footer-col" aria-label="Explore">
-      <h3>Explore</h3>
-      <a class="link-sweep" routerLink="/">Home</a>
-      <a class="link-sweep" routerLink="/services">Services</a>
-      <a class="link-sweep" routerLink="/work">Our Work</a>
-      <a class="link-sweep" routerLink="/about">About</a>
-      <a class="link-sweep" routerLink="/contact">Contact</a>
+    <nav class="footer-col" [class.footer-col--open]="openCol() === 'explore'" aria-label="Explore">
+      <button type="button" class="footer-col-head" (click)="toggleCol('explore')" [attr.aria-expanded]="openCol() === 'explore'">
+        <span class="footer-col-title">Explore</span>
+        <app-icon name="chevron-down" [size]="16" class="footer-col-chevron" />
+      </button>
+      <div class="footer-col-body">
+        <a class="link-sweep" routerLink="/">Home</a>
+        <a class="link-sweep" routerLink="/services">Services</a>
+        <a class="link-sweep" routerLink="/work">Our Work</a>
+        <a class="link-sweep" routerLink="/about">About</a>
+        <a class="link-sweep" routerLink="/contact">Contact</a>
+      </div>
     </nav>
 
-    <nav class="footer-col" aria-label="Services">
-      <h3>Services</h3>
-      <a class="link-sweep" routerLink="/services" fragment="websites">Websites</a>
-      <a class="link-sweep" routerLink="/services" fragment="invitations">Invitation Websites</a>
-      <a class="link-sweep" routerLink="/services" fragment="logo">Logo &amp; Branding</a>
-      <a class="link-sweep" routerLink="/services" fragment="posters">Posters &amp; Banners</a>
-      <a class="link-sweep" routerLink="/services" fragment="social">Social Media Designs</a>
-      <a class="link-sweep" routerLink="/services" fragment="content">Content Writing</a>
-      <a class="link-sweep" routerLink="/services" fragment="ai">AI Services</a>
-      <a class="link-sweep" routerLink="/services" fragment="dashboards">Dashboards &amp; Business Tools</a>
-      <a class="link-sweep" routerLink="/services" fragment="seo">SEO &amp; Growth</a>
-      <a class="link-sweep" routerLink="/services" fragment="uiux">UI/UX Design</a>
+    <nav class="footer-col" [class.footer-col--open]="openCol() === 'services'" aria-label="Services">
+      <button type="button" class="footer-col-head" (click)="toggleCol('services')" [attr.aria-expanded]="openCol() === 'services'">
+        <span class="footer-col-title">Services</span>
+        <app-icon name="chevron-down" [size]="16" class="footer-col-chevron" />
+      </button>
+      <div class="footer-col-body">
+        <a class="link-sweep" routerLink="/services" fragment="websites">Websites</a>
+        <a class="link-sweep" routerLink="/services" fragment="invitations">Invitation Websites</a>
+        <a class="link-sweep" routerLink="/services" fragment="logo">Logo &amp; Branding</a>
+        <a class="link-sweep" routerLink="/services" fragment="posters">Posters &amp; Banners</a>
+        <a class="link-sweep" routerLink="/services" fragment="social">Social Media Designs</a>
+        @if (showAllServices()) {
+          <a class="link-sweep" routerLink="/services" fragment="content">Content Writing</a>
+          <a class="link-sweep" routerLink="/services" fragment="ai">AI Services</a>
+          <a class="link-sweep" routerLink="/services" fragment="dashboards">Dashboards &amp; Business Tools</a>
+          <a class="link-sweep" routerLink="/services" fragment="seo">SEO &amp; Growth</a>
+          <a class="link-sweep" routerLink="/services" fragment="uiux">UI/UX Design</a>
+        }
+        <button type="button" class="footer-more" (click)="showAllServices.set(!showAllServices())" [attr.aria-expanded]="showAllServices()">
+          {{ showAllServices() ? 'Show less' : 'Show more' }}
+          <app-icon name="chevron-down" [size]="14" />
+        </button>
+      </div>
     </nav>
 
-    <nav class="footer-col" aria-label="Legal">
-      <h3>Legal</h3>
-      <a class="link-sweep" routerLink="/privacy">Privacy Policy</a>
-      <a class="link-sweep" routerLink="/terms">Terms of Service</a>
+    <nav class="footer-col" [class.footer-col--open]="openCol() === 'legal'" aria-label="Legal">
+      <button type="button" class="footer-col-head" (click)="toggleCol('legal')" [attr.aria-expanded]="openCol() === 'legal'">
+        <span class="footer-col-title">Legal</span>
+        <app-icon name="chevron-down" [size]="16" class="footer-col-chevron" />
+      </button>
+      <div class="footer-col-body">
+        <a class="link-sweep" routerLink="/privacy">Privacy Policy</a>
+        <a class="link-sweep" routerLink="/terms">Terms of Service</a>
+      </div>
     </nav>
 
-    <div class="footer-col">
-      <h3>Reach us</h3>
-      <div class="footer-social">
-        <a class="social-btn" [href]="instagramUrl" target="_blank" rel="noopener" [attr.aria-label]="'Instagram, ' + socialHandle">
-          <app-icon name="instagram" [size]="20" />
+    <div class="footer-col" [class.footer-col--open]="openCol() === 'reach'" aria-label="Reach us">
+      <button type="button" class="footer-col-head" (click)="toggleCol('reach')" [attr.aria-expanded]="openCol() === 'reach'">
+        <span class="footer-col-title">Reach us</span>
+        <app-icon name="chevron-down" [size]="16" class="footer-col-chevron" />
+      </button>
+      <div class="footer-col-body">
+        <div class="footer-social">
+          <a class="social-btn" [href]="instagramUrl" target="_blank" rel="noopener" [attr.aria-label]="'Instagram, ' + socialHandle">
+            <app-icon name="instagram" [size]="20" />
+          </a>
+          <a class="social-btn" [href]="youtubeUrl" target="_blank" rel="noopener" [attr.aria-label]="'YouTube, ' + socialHandle">
+            <app-icon name="youtube" [size]="20" />
+          </a>
+        </div>
+        <span class="footer-handle">{{ socialHandle }} on Instagram &amp; YouTube</span>
+        <a class="link-sweep" [href]="'mailto:' + email">
+          <app-icon name="mail" [size]="16" /> Email, {{ email }}
         </a>
-        <a class="social-btn" [href]="youtubeUrl" target="_blank" rel="noopener" [attr.aria-label]="'YouTube, ' + socialHandle">
-          <app-icon name="youtube" [size]="20" />
+        <a class="link-sweep" routerLink="/contact">
+          <app-icon name="arrow-right" [size]="16" /> Start a project
         </a>
       </div>
-      <span class="footer-handle">{{ socialHandle }} on Instagram &amp; YouTube</span>
-      <a class="link-sweep" [href]="'mailto:' + email">
-        <app-icon name="mail" [size]="16" /> Email, {{ email }}
-      </a>
-      <a class="link-sweep" routerLink="/contact">
-        <app-icon name="arrow-right" [size]="16" /> Start a project
-      </a>
     </div>
   </div>
 
   <div class="container footer-base">
     <span>© 2026 Jaurvo. All rights reserved.</span>
-    <span>Jaurvo, Hitech City, Hyderabad, India. Websites and designs for clients worldwide.</span>
-    <a class="link-sweep" href="#top">Back to top</a>
+    <span>Jaurvo, Riyadh, Saudi Arabia & Hitech City, Hyderabad, India. Websites and designs for clients worldwide.
+</span>
+  <a class="link-sweep" href="#top" (click)="scrollToTop($event)">Back to top</a>
+
   </div>
 </footer>
