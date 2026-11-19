@@ -666,7 +666,20 @@ export const FAQS: Faq[] = [
     q: 'Can my website be in Arabic?',
     a: 'Yes, full Arabic (RTL) websites for Gulf clients, with proper right-to-left layout. Visitors switch language in one tap.',
   },
+  {
+    q: 'What do you need from me to start?',
+    a: 'Just an enquiry through the form. If you have a logo, photos, or a menu / price list, send them over, and if you do not, we design from scratch and guide you step by step.',
+  },
+  {
+    q: 'Do you redesign existing websites?',
+    a: 'Yes, website redesign is one of our services. We rebuild your existing site with a fresh, premium design, keep the content and pages that still work, and move everything over without your site going offline in between. Send us your current link through the enquiry form and we will tell you honestly what can be improved and what it will cost.',
+  },
+  {
+    q: 'What support do I get after launch?',
+    a: 'Every launch includes simple guidance you can follow, so you are never left guessing. Premium website plans include one month of free support after launch, and for everyone else, small updates, text, photos, prices, are quoted upfront at a small fee before any work begins, so there are never surprise charges.',
+  },
 ];
+
 
 export const BENEFITS: { title: string; text: string }[] = [
   {

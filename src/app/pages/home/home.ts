@@ -182,7 +182,13 @@ export class Home implements OnInit, OnDestroy {
     'Posters & Banners',
     'Social Media Designs',
     'Content Writing',
+    'UI/UX Design',
+    'SEO & Growth',
+    'AI Services',
+    'Dashboards & Business Tools',
+    'Applications',
   ];
+
   readonly rotateIndex = signal(0);
   /** True for one frame when the roll wraps, so the track jumps without animating backwards. */
   readonly rollInstant = signal(false);
@@ -211,6 +217,15 @@ export class Home implements OnInit, OnDestroy {
       'Jaurvo builds websites, invitation websites, logos, posters and social media designs for businesses worldwide, send an enquiry, get a fixed quote in writing, delivered in days.',
       '/',
     );
+    this.seo.addJsonLd('faq-schema', {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: FAQS.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    });
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       this.timer = setInterval(() => {
         const next = (this.rotateIndex() + 1) % this.serviceNames.length;
@@ -227,6 +242,7 @@ export class Home implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.timer) clearInterval(this.timer);
+    this.seo.removeJsonLd('faq-schema');
   }
 
   toggleFaq(index: number): void {

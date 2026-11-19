@@ -7,13 +7,14 @@
 
   <div class="container">
     <div class="footer-strip" aria-label="Jaurvo services">
-      @for (img of stripImages; track img) {
+@for (img of stripImages; track img; let i = $index) {
+
         <a routerLink="/services" aria-label="Jaurvo design work, services">
           <img
             [src]="img"
             [srcset]="img.replace('.webp', '-sm.webp') + ' 480w, ' + img + ' 800w'"
             sizes="240px"
-            [alt]="'Jaurvo design work'"
+           [alt]="'Jaurvo design work ' + (i + 1)"
             width="480"
             height="320"
             loading="lazy"
@@ -44,6 +45,7 @@
         <a class="link-sweep" routerLink="/services">Services</a>
         <a class="link-sweep" routerLink="/work">Our Work</a>
         <a class="link-sweep" routerLink="/about">About</a>
+        <a class="link-sweep" routerLink="/pricing">Pricing</a>
         <a class="link-sweep" routerLink="/contact">Contact</a>
       </div>
     </nav>
@@ -58,8 +60,10 @@
         <a class="link-sweep" routerLink="/services" fragment="invitations">Invitation Websites</a>
         <a class="link-sweep" routerLink="/services" fragment="logo">Logo &amp; Branding</a>
         <a class="link-sweep" routerLink="/services" fragment="posters">Posters &amp; Banners</a>
-        <a class="link-sweep" routerLink="/services" fragment="social">Social Media Designs</a>
-        @if (showAllServices()) {
+    <a class="link-sweep" routerLink="/services" fragment="social">Social Media Designs</a>
+<a class="link-sweep" routerLink="/services" fragment="applications">Applications</a>
+@if (showAllServices()) {
+
           <a class="link-sweep" routerLink="/services" fragment="content">Content Writing</a>
           <a class="link-sweep" routerLink="/services" fragment="ai">AI Services</a>
           <a class="link-sweep" routerLink="/services" fragment="dashboards">Dashboards &amp; Business Tools</a>

@@ -1,0 +1,64 @@
+<section class="section section--sand">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">Pricing</p>
+      <h1 class="section-title">Clear prices. No surprises.</h1>
+      <p class="section-lede">
+        Every project starts with a fixed quote through the enquiry form. These are starting
+        prices, your final quote depends only on the pages and features you choose.
+      </p>
+    </div>
+
+    <div class="pricing-tools" [appReveal]>
+      <app-currency-switcher />
+      <p class="pricing-negotiable-line">Prices are starting points. Tell us your budget, we'll shape the scope to fit it.</p>
+    </div>
+
+    <div class="plans">
+      @for (plan of livePlans(); track plan.name; let i = $index) {
+        <article class="plan spotlight-card" appSpotlight [class.plan--featured]="plan.featured" [appReveal]="i * 100">
+          @if (plan.featured) {
+            <span class="badge badge--featured plan-badge">Most Booked</span>
+          }
+          <h3>{{ plan.name }}</h3>
+          @if (plan.tagline) {
+            <p class="plan-tag">{{ plan.tagline }}</p>
+          }
+          <p class="plan-from">Starting from</p>
+          <p class="plan-price">{{ currency.format(plan.priceUsd) }}</p>
+          <p class="plan-negotiable">Priced on request</p>
+          <ul class="plan-features">
+            @for (feature of plan.features; track feature) {
+              <li><app-icon name="check" [size]="16" /> {{ feature }}</li>
+            }
+          </ul>
+          <a class="btn plan-btn" [class.btn--accent]="plan.featured" [class.btn--ink]="!plan.featured"
+             routerLink="/contact" [queryParams]="{ service: 'Websites', message: 'I would like a quote for the ' + plan.name + ' plan.' }">
+            Get a Quote
+          </a>
+          <a class="link-sweep plan-budget" routerLink="/contact" [queryParams]="{ service: 'Websites', message: 'My budget is ___ and I need the ' + plan.name + ' plan.' }">
+            Tell us your budget
+          </a>
+          <p class="plan-note">50% advance, balance on delivery</p>
+        </article>
+      }
+    </div>
+
+    <p class="pricing-note" [appReveal]>{{ pricingNote }}</p>
+    <p class="pricing-note" [appReveal]>{{ currencyNote }}</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div [appReveal]>
+      <p class="eyebrow">Not sure?</p>
+      <h2 class="section-title">Tell us what you need, we'll quote it in writing.</h2>
+      <p class="section-lede">
+        Send an enquiry with what you need, you'll get a clear scope, price and timeline
+        before you pay anything.
+      </p>
+      <a class="btn btn--accent" routerLink="/contact">Start a Project</a>
+    </div>
+  </div>
+</section>

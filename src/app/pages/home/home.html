@@ -60,7 +60,7 @@
 
     <div class="hero-visual-lockup" aria-hidden="true">
       <span class="hero-visual-name">jaurvo</span>
-      <span class="hero-visual-tag">lets build together</span>
+      <span class="hero-visual-tag">let's build together</span>
     </div>
   </div>
   </div>
@@ -152,23 +152,25 @@
       (mouseleave)="capHover.set(null)"
     >
       @for (service of content.services(); track service.key; let i = $index) {
-        <a
-          class="cap-row"
-          routerLink="/services"
-          (mouseenter)="capHover.set(i)"
-          (focus)="capHover.set(i)"
-          (blur)="capHover.set(null)"
-          [class.cap-row--active]="capHover() === i"
-          [attr.aria-label]="service.name + ', ' + service.subServices.length + ' services, open all services'"
-        >
-          <span class="cap-num">{{ service.code }}</span>
-          <span class="cap-main">
-            <span class="cap-title">{{ service.name }}</span>
-            <span class="cap-subs">{{ capSubLine(service) }}</span>
-          </span>
-          <span class="cap-count">{{ service.subServices.length }} services</span>
-          <app-icon name="arrow-up-right" [size]="22" class="cap-arrow" />
-        </a>
+<a
+  class="cap-row"
+  routerLink="/services"
+  [fragment]="service.key"
+  (mouseenter)="capHover.set(i)"
+  (focus)="capHover.set(i)"
+  (blur)="capHover.set(null)"
+  [class.cap-row--active]="capHover() === i"
+  [attr.aria-label]="service.name + ', ' + service.subServices.length + ' services, open all services'"
+>
+  <span class="cap-num">{{ service.code }}</span>
+  <span class="cap-main">
+    <span class="cap-title">{{ service.name }}</span>
+    <span class="cap-subs">{{ capSubLine(service) }}</span>
+  </span>
+  <span class="cap-count">{{ service.subServices.length }} services</span>
+  <app-icon name="arrow-up-right" [size]="22" class="cap-arrow" />
+</a>
+
       }
     </div>
   </div>
@@ -248,10 +250,12 @@
     <div [appReveal]>
       <p class="eyebrow">03, Why Work With Us</p>
       <h2 class="section-title">A full team, working like it matters, because it does</h2>
-      <p class="section-lede">
-        Most small businesses choose between a lone freelancer and an expensive agency.
-        Jaurvo is the third option: a complete team, founder-led, at an honest price.
-      </p>
+    <p class="section-lede">
+  Most small businesses choose between a lone freelancer and an expensive agency.
+  Jaurvo is the third option: a complete team, founder-led, at an honest price.
+  And when the job is smaller, you can hire Jaurvo on a freelance basis too, with the same team behind it.
+</p>
+
     </div>
 
     <div class="benefits">
@@ -387,7 +391,7 @@
       <article class="team-card team-card--more" [appReveal]="360">
         <span class="team-avatar" aria-hidden="true">+11</span>
         <h3>Full-time employees</h3>
-        <p>Designers, developers &amp; support staff behind every project</p>
+       <p>Designers, developers, SEO specialists, content writers, AI engineers, data specialists &amp; support staff behind every project</p>
       </article>
     </div>
 
@@ -413,9 +417,12 @@
         @for (review of content.reviews(); track review.name + review.text) {
           <blockquote class="review spotlight-card" appSpotlight [appReveal]>
             <span class="review-stars" [attr.aria-label]="review.rating + ' out of 5 stars'">
-              @for (star of [1, 2, 3, 4, 5]; track star) {
-                <app-icon name="star" [size]="16" />
-              }
+     @for (star of [1, 2, 3, 4, 5]; track star) {
+  @if (star <= review.rating) {
+    <app-icon name="star" [size]="16" />
+  }
+}
+
             </span>
             <p>"{{ review.text }}"</p>
             @if (review.service) {

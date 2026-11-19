@@ -25,4 +25,20 @@ export class SeoService {
     }
     canonical.href = url;
   }
+
+  /** Injects a JSON-LD script into <head>, replacing any earlier one with the same id. */
+  addJsonLd(id: string, json: unknown): void {
+    this.removeJsonLd(id);
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    script.textContent = JSON.stringify(json);
+    document.head.appendChild(script);
+  }
+
+  /** Removes a JSON-LD script added with addJsonLd. */
+  removeJsonLd(id: string): void {
+    document.getElementById(id)?.remove();
+  }
 }
+

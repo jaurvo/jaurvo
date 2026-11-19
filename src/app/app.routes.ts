@@ -4,6 +4,7 @@ import { Services } from './pages/services/services';
 import { Work } from './pages/work/work';
 import { About } from './pages/about/about';
 import { Contact } from './pages/contact/contact';
+import { Pricing } from './pages/pricing/pricing';
 import { Privacy } from './pages/privacy/privacy';
 import { Terms } from './pages/terms/terms';
 
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'work', component: Work },
   { path: 'about', component: About },
   { path: 'contact', component: Contact },
+  { path: 'pricing', component: Pricing },
   { path: 'privacy', component: Privacy },
   { path: 'terms', component: Terms },
   {

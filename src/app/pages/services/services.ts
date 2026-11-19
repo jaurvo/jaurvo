@@ -23,7 +23,7 @@ export class Services implements OnInit {
   ngOnInit(): void {
     this.seo.setPage(
       'Services: Websites, Invitations, Logos & More | Jaurvo',
-      'Ten services in detail: websites, logo & branding, invitation websites, UI/UX, SEO, social media designs, posters, content writing, AI services and dashboards, with starting prices and enquiry-form ordering.',
+      'Eleven services in detail: websites, logo & branding, invitation websites, UI/UX, SEO, social media designs, posters, content writing, AI services and dashboards, with starting prices and enquiry-form ordering.',
       '/services',
     );
   }

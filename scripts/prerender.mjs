@@ -49,7 +49,7 @@ async function main() {
     'utf8'
   );
   const slugs = [...new Set([...dataSrc.matchAll(/slug:\s*'([^']+)'/g)].map((m) => m[1]))];
-  const routes = ['', 'services', 'work', 'about', 'contact', 'privacy', 'terms',
+  const routes = ['', 'services', 'work', 'about', 'contact', 'pricing', 'privacy', 'terms',
     ...slugs.map((s) => `services/${s}`)];
   console.log(`Prerendering ${routes.length} routes...`);
 
